@@ -1,4 +1,4 @@
-import { ISearchCard } from './search-card/search-card.model';
+import { ISearchCard } from './search-card.model';
 
 export interface ISearchResponse {
   kind: string;
