@@ -1,0 +1,10 @@
+.search-container {
+  display: none;
+  padding-bottom: 30px;
+}
+
+.show {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

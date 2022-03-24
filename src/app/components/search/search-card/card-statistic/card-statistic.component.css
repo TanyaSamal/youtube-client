@@ -1,0 +1,25 @@
+.socials {
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.socials div {
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.material-icons {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+.count {
+  vertical-align: super;
+  margin-left: 3px;
+}
+
+.comments {
+  margin-right: 0;
+}

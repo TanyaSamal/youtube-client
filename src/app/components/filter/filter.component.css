@@ -1,0 +1,37 @@
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  height: 65px;
+  background: #e5e5e5;
+  font-size: 1em;
+  color: #929292;
+}
+
+.filter div {
+  margin-right: 20px;
+}
+
+.sort {
+  text-decoration-line: underline;
+  color: #2f80ed;
+  cursor: pointer;
+}
+
+label {
+  margin-right: 10px;
+  color: #2f80ed;
+}
+
+input {
+  border: none;
+  padding: 5px 10px;
+}
+
+mat-form-field {
+  width: 150px;
+}
+
+.visible {
+  display: flex;
+}
