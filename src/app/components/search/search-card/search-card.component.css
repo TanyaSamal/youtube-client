@@ -4,7 +4,7 @@
   width: 263px;
   background: #e5e5e5;
   border-radius: 5px;
-  border-bottom: 5px solid blue;
+  border-bottom: 5px solid #2f80ed;
 }
 
 img {
@@ -28,4 +28,6 @@ a {
   margin: 10px auto;
   width: 120px;
   height: 32px;
+  background-color: #2f80ed;
+  color: #fff;
 }

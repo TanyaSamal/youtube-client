@@ -9,6 +9,7 @@ import { UserInfoComponent } from './components/header/user-info/user-info.compo
 import { CardStatisticComponent } from './components/search/search-card/card-statistic/card-statistic.component';
 import { SearchCardComponent } from './components/search/search-card/search-card.component';
 import { SearchComponent } from './components/search/search.component';
+import { ColorBorderDirective } from './directives/colorBorder.directive';
 import { MaterialModule } from './material/material.module';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MaterialModule } from './material/material.module';
     CardStatisticComponent,
     SearchFieldComponent,
     UserInfoComponent,
+    ColorBorderDirective,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, MaterialModule],
   providers: [],

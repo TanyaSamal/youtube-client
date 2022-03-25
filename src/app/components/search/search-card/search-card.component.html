@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card" appColorBorder publishedDate="{{ item.snippet.publishedAt }}">
   <img src="{{ item.snippet.thumbnails.medium.url }}">
   <app-card-statistic [item]="item"></app-card-statistic>
   <p>{{ item.snippet.title }}</p>
-  <a mat-raised-button color="primary">More...</a>
+  <a mat-raised-button>More...</a>
 </div>
