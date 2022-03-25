@@ -1,6 +1,6 @@
 <div class="card">
-  <img src="">
-  <app-card-statistic></app-card-statistic>
-  <p>title</p>
+  <img src="{{ item.snippet.thumbnails.medium.url }}">
+  <app-card-statistic [item]="item"></app-card-statistic>
+  <p>{{ item.snippet.title }}</p>
   <a mat-raised-button color="primary">More...</a>
 </div>

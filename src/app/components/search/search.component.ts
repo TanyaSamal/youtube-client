@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ISearchResponse } from 'src/app/models/search.model';
 
 @Component({
   selector: 'app-search',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  constructor() {}
+  searchResults: ISearchResponse = Object.assign({});
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    const responce = '../../../assets/responce.json';
+    const res = await fetch(responce);
+    this.searchResults = await res.json();
+  }
 }
