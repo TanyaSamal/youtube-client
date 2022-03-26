@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   searchResults: ISearchResponse = Object.assign({});
   filteredResponse: ISearchResponse = Object.assign({});
   nothingFound = false;
+  isShow = false;
 
   constructor(
     private sortByFieldPipe: SortByFieldPipe,
@@ -28,6 +29,10 @@ export class SearchComponent implements OnInit {
     const res = await fetch(responce);
     this.searchResults = await res.json();
     this.setOriginalResponse();
+  }
+
+  showResults() {
+    this.isShow = true;
   }
 
   filterByField(up: boolean, field: string): void {

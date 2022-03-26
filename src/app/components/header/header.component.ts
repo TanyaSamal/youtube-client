@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
-  constructor() {}
+export class HeaderComponent {
+  @Output() search: EventEmitter<void> = new EventEmitter();
 
-  ngOnInit(): void {}
+  emitSearch() {
+    this.search.emit();
+  }
 }

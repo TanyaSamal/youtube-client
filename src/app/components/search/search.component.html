@@ -1,5 +1,5 @@
 <section class="search">
-  <div class="container search-container show">
+  <div class="container search-container" [class.show]="isShow">
     <app-search-card *ngFor="let i of filteredResponse.items" [item]="i"></app-search-card>
   </div>
   <div class="container">

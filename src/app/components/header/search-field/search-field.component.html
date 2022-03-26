@@ -1,5 +1,6 @@
 <mat-form-field>
   <mat-placeholder>What do you want to find out?</mat-placeholder>
-  <input matInput type="search" class="search-input">
+  <input matInput type="search" class="search-input" (keyup.enter)="startsearch()">
 </mat-form-field>
-<button mat-button matSuffix mat-flat-button aria-label="search" class="search-btn">Search</button>
+<button mat-button matSuffix mat-flat-button aria-label="search" class="search-btn"
+  (click)="startsearch()">Search</button>

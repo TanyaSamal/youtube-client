@@ -19,4 +19,8 @@ export class AppComponent {
   filterByWord(word: string): void {
     this.viewSearch.filterByWord(word);
   }
+
+  showResults(): void {
+    this.viewSearch.showResults();
+  }
 }
