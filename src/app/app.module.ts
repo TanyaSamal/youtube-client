@@ -11,6 +11,7 @@ import { SearchCardComponent } from './components/search/search-card/search-card
 import { SearchComponent } from './components/search/search.component';
 import { ColorBorderDirective } from './directives/colorBorder.directive';
 import { MaterialModule } from './material/material.module';
+import { SortByFieldPipe } from './pipes/sortByField.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MaterialModule } from './material/material.module';
     SearchFieldComponent,
     UserInfoComponent,
     ColorBorderDirective,
+    SortByFieldPipe,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, MaterialModule],
   providers: [],

@@ -13,6 +13,8 @@
 }
 
 .sort {
+  position: relative;
+  padding-right: 5px;
   text-decoration-line: underline;
   color: #2f80ed;
   cursor: pointer;
@@ -34,4 +36,16 @@ mat-form-field {
 
 .visible {
   display: flex;
+}
+
+.arrow {
+  opacity: 0;
+  position: absolute;
+  top: 4px;
+  background-image: url('../../../assets/arrow.svg');
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  filter: invert(43%) sepia(85%) saturate(2314%) hue-rotate(199deg) brightness(94%) contrast(98%);
+  width: 15px;
+  height: 15px;
 }

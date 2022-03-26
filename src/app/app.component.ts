@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { SearchComponent } from './components/search/search.component';
+import { FilterEvent } from './constants/constants';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'youtube-client';
+
+  @ViewChild(SearchComponent) viewSearch: SearchComponent = Object.assign({});
+
+  public filterByField(filterEvent: FilterEvent): void {
+    this.viewSearch.filterByField(filterEvent.direction, filterEvent.field);
+  }
 }
