@@ -11,7 +11,7 @@
   <div>
     <label>by word or sentance</label>
     <mat-form-field class="word-filter">
-      <input matInput type="text">
+      <input matInput type="text" (keyup)="sortByWord($event)">
     </mat-form-field>
   </div>
 </div>

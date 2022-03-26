@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { SearchComponent } from './components/search/search.component';
-import { FilterEvent } from './constants/constants';
+import { FilterEvent } from './models/types';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,11 @@ export class AppComponent {
 
   @ViewChild(SearchComponent) viewSearch: SearchComponent = Object.assign({});
 
-  public filterByField(filterEvent: FilterEvent): void {
+  filterByField(filterEvent: FilterEvent): void {
     this.viewSearch.filterByField(filterEvent.direction, filterEvent.field);
+  }
+
+  filterByWord(word: string): void {
+    this.viewSearch.filterByWord(word);
   }
 }

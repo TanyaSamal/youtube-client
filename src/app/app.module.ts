@@ -11,6 +11,7 @@ import { SearchCardComponent } from './components/search/search-card/search-card
 import { SearchComponent } from './components/search/search.component';
 import { ColorBorderDirective } from './directives/colorBorder.directive';
 import { MaterialModule } from './material/material.module';
+import { FilterByWordPipe } from './pipes/filterByWord.pipe';
 import { SortByFieldPipe } from './pipes/sortByField.pipe';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SortByFieldPipe } from './pipes/sortByField.pipe';
     UserInfoComponent,
     ColorBorderDirective,
     SortByFieldPipe,
+    FilterByWordPipe,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, MaterialModule],
   providers: [],

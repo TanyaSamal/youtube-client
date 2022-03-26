@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ArrowState, FilterEvent, SortFields } from 'src/app/constants/constants';
+import { ArrowState, FilterEvent, SortFields } from 'src/app/models/types';
 
 @Component({
   selector: 'app-filter',
@@ -7,7 +7,8 @@ import { ArrowState, FilterEvent, SortFields } from 'src/app/constants/constants
   styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent {
-  @Output() public filterByField: EventEmitter<FilterEvent> = new EventEmitter();
+  @Output() filterByField: EventEmitter<FilterEvent> = new EventEmitter();
+  @Output() filterByWord: EventEmitter<string> = new EventEmitter();
   viewState: ArrowState = {
     show: false,
     up: false,
@@ -16,8 +17,9 @@ export class FilterComponent {
     show: false,
     up: false,
   };
+  inputWord = '';
 
-  public sortByField(fieldName: string): void {
+  sortByField(fieldName: string): void {
     if (fieldName === SortFields.DATE) {
       this.dateState.show = true;
       this.dateState.up = !this.dateState.up;
@@ -35,5 +37,12 @@ export class FilterComponent {
         field: fieldName,
       });
     }
+  }
+
+  sortByWord(event: Event): void {
+    this.dateState.show = false;
+    this.viewState.show = false;
+    this.inputWord = (<HTMLInputElement>event.target).value;
+    this.filterByWord.emit(this.inputWord);
   }
 }
