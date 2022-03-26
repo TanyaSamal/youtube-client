@@ -1,4 +1,4 @@
-<div class="filter">
+<div class="filter" [style.display]="isOpen?'flex':'none'">
   <div>Sorting by:</div>
   <div class="sort" (click)="sortByField('date')">date
     <span class="arrow" [style.opacity]="dateState.show?'1':'0'"

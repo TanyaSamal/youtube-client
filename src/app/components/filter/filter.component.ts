@@ -18,6 +18,7 @@ export class FilterComponent {
     up: false,
   };
   inputWord = '';
+  isOpen = false;
 
   sortByField(fieldName: string): void {
     if (fieldName === SortFields.DATE) {
@@ -44,5 +45,9 @@ export class FilterComponent {
     this.viewState.show = false;
     this.inputWord = (<HTMLInputElement>event.target).value;
     this.filterByWord.emit(this.inputWord);
+  }
+
+  toggleFilter() {
+    this.isOpen = !this.isOpen;
   }
 }

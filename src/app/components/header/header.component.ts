@@ -7,8 +7,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   @Output() search: EventEmitter<void> = new EventEmitter();
+  @Output() openFilter: EventEmitter<void> = new EventEmitter();
 
   emitSearch() {
     this.search.emit();
+  }
+
+  showFilter() {
+    this.openFilter.emit();
   }
 }

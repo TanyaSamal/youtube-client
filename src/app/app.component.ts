@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { FilterComponent } from './components/filter/filter.component';
 import { SearchComponent } from './components/search/search.component';
 import { FilterEvent } from './models/types';
 
@@ -11,6 +12,7 @@ export class AppComponent {
   title = 'youtube-client';
 
   @ViewChild(SearchComponent) viewSearch: SearchComponent = Object.assign({});
+  @ViewChild(FilterComponent) viewFilterh: FilterComponent = Object.assign({});
 
   filterByField(filterEvent: FilterEvent): void {
     this.viewSearch.filterByField(filterEvent.direction, filterEvent.field);
@@ -22,5 +24,9 @@ export class AppComponent {
 
   showResults(): void {
     this.viewSearch.showResults();
+  }
+
+  openFilter(): void {
+    this.viewFilterh.toggleFilter();
   }
 }
