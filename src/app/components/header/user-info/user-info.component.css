@@ -18,3 +18,9 @@
 .user-name {
   margin: 0;
 }
+
+@media (max-width: 600px) {
+  .user-info {
+    display: none;
+  }
+}

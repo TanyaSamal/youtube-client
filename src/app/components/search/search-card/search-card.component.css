@@ -1,7 +1,9 @@
 .card {
   display: grid;
+  align-items: center;
+  justify-content: center;
   height: 327px;
-  width: 263px;
+  width: 100%;
   background: #e5e5e5;
   border-radius: 5px;
   border-bottom: 5px solid #2f80ed;
@@ -9,9 +11,8 @@
 
 img {
   display: block;
-  width: 223px;
-  height: 123px;
-  margin: 20px;
+  width: 80%;
+  margin: 20px auto;
 }
 
 p {
@@ -30,4 +31,27 @@ a {
   height: 32px;
   background-color: #2f80ed;
   color: #fff;
+}
+
+@media (max-width: 800px) {
+  /* img {
+    width: 150px;
+    height: 80px;
+  }
+
+  .card {
+    height: 273px;
+    width: 190px;
+  } */
+
+  p {
+    font-size: 16px;
+    line-height: 18px;
+    margin: 10px;
+  }
+
+  a {
+    width: 100px;
+    height: 30px;
+  }
 }

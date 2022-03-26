@@ -14,3 +14,15 @@ body {
 .container {
   margin: 0 120px;
 }
+
+@media (max-width: 800px) {
+  .container {
+    margin: 0 60px;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    margin: 0 30px;
+  }
+}

@@ -1,15 +1,15 @@
 .filter {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  height: 65px;
   background: #e5e5e5;
   font-size: 1em;
   color: #929292;
 }
 
-.filter div {
-  margin-right: 20px;
+.filter-container {
+  display: flex;
+  column-gap: 20px;
+  justify-content: center;
+  align-items: baseline;
+  height: 65px;
 }
 
 .sort {
@@ -48,4 +48,13 @@ mat-form-field {
   filter: invert(43%) sepia(85%) saturate(2314%) hue-rotate(199deg) brightness(94%) contrast(98%);
   width: 15px;
   height: 15px;
+}
+
+@media (max-width: 700px) {
+  .filter-container {
+    padding-top: 5px;
+    flex-direction: column;
+    gap: 5px;
+    height: 140px;
+  }
 }

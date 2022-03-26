@@ -1,6 +1,6 @@
 mat-form-field {
   margin-right: 10px;
-  width: 400px;
+  width: 30%;
 }
 
 .search-btn {
@@ -9,4 +9,24 @@ mat-form-field {
   color: #fff;
   text-transform: lowercase;
   line-height: 32px;
+}
+
+@media (max-width: 800px) {
+  .mat-form-field {
+    line-height: 1;
+  }
+
+  .search-btn {
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .search-btn {
+    display: none;
+  }
+
+  mat-form-field {
+    width: 50%;
+  }
 }

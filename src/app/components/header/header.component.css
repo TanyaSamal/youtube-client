@@ -25,3 +25,26 @@ header {
   color: #fff;
   line-height: 32px;
 }
+
+@media (max-width: 1024px) {
+  .header-container {
+    text-align: left;
+  }
+}
+
+@media (max-width: 800px) {
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .filter-btn {
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-container {
+    text-align: center;
+  }
+}
