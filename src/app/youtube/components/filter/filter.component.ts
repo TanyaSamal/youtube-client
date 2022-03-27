@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ArrowState, FilterEvent, SortFields } from 'src/app/models/types';
+import { ArrowState, FilterEvent, SortFields } from 'src/app/shared/models/types';
 
 @Component({
   selector: 'app-filter',

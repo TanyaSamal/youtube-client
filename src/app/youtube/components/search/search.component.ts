@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ISearchResponse } from 'src/app/models/search.model';
-import { FilterByWordPipe } from 'src/app/pipes/filterByWord.pipe';
-import { SortByFieldPipe } from 'src/app/pipes/sortByField.pipe';
+import { ISearchResponse } from 'src/app/youtube/models/search.model';
+import { FilterByWordPipe } from 'src/app/youtube/pipes/filterByWord.pipe';
+import { SortByFieldPipe } from 'src/app/youtube/pipes/sortByField.pipe';
 
 @Component({
   selector: 'app-search',

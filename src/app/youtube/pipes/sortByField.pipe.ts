@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ISearchCard } from '../models/search-card.model';
-import { SortFields } from '../models/types';
+import { SortFields } from '../../shared/models/types';
 
 @Pipe({ name: 'sortByField' })
 export class SortByFieldPipe implements PipeTransform {

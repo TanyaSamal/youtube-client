@@ -10,7 +10,7 @@
 .user-picture {
   width: 24px;
   height: 24px;
-  background: url('../../../../assets/login.png');
+  background: url('../../../../../assets/login.png');
   background-repeat: no-repeat;
   background-size: contain;
 }

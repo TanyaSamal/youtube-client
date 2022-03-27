@@ -1,5 +1,5 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { Constants } from '../models/constants';
+import { Constants } from '../../shared/models/constants';
 
 @Directive({
   selector: '[appColorBorder]',
