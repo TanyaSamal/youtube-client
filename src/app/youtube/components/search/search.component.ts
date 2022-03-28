@@ -2,22 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ISearchResponse } from 'src/app/youtube/models/search.model';
 import { FilterByWordPipe } from 'src/app/youtube/pipes/filterByWord.pipe';
 import { SortByFieldPipe } from 'src/app/youtube/pipes/sortByField.pipe';
+import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [SortByFieldPipe, FilterByWordPipe],
+  providers: [SortByFieldPipe, FilterByWordPipe, YoutubeService],
 })
 export class SearchComponent implements OnInit {
   searchResults: ISearchResponse = Object.assign({});
   filteredResponse: ISearchResponse = Object.assign({});
   nothingFound = false;
-  isShow = false;
 
   constructor(
     private sortByFieldPipe: SortByFieldPipe,
     private filterByWordPipe: FilterByWordPipe,
+    private youtubeService: YoutubeService,
   ) {}
 
   private setOriginalResponse(): void {
@@ -25,14 +26,8 @@ export class SearchComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const responce = '../../../assets/responce.json';
-    const res = await fetch(responce);
-    this.searchResults = await res.json();
+    this.searchResults = await this.youtubeService.getResponse();
     this.setOriginalResponse();
-  }
-
-  showResults() {
-    this.isShow = true;
   }
 
   filterByField(up: boolean, field: string): void {

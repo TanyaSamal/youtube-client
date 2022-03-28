@@ -6,8 +6,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchFieldComponent } from './components/header/search-field/search-field.component';
 import { UserInfoComponent } from './components/header/user-info/user-info.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { StateService } from './services/state.service';
 
 @NgModule({
   declarations: [
@@ -20,5 +21,6 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
   ],
   exports: [HeaderComponent, FooterComponent],
   imports: [CommonModule, RouterModule, SharedModule],
+  providers: [StateService],
 })
 export class CoreModule {}

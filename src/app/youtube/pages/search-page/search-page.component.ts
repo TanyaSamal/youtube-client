@@ -19,12 +19,4 @@ export class SearchPageComponent {
   filterByWord(word: string): void {
     this.viewSearch.filterByWord(word);
   }
-
-  showResults(): void {
-    this.viewSearch.showResults();
-  }
-
-  openFilter(): void {
-    this.viewFilterh.toggleFilter();
-  }
 }

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-field',
@@ -6,9 +7,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./search-field.component.css'],
 })
 export class SearchFieldComponent {
-  @Output() search: EventEmitter<void> = new EventEmitter();
+  constructor(private router: Router) {}
 
   startsearch() {
-    this.search.emit();
+    this.router.navigate(['/search']);
   }
 }

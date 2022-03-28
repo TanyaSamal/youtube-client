@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { StateService } from 'src/app/core/services/state.service';
 import { ArrowState, FilterEvent, SortFields } from 'src/app/shared/models/types';
 
 @Component({
@@ -6,7 +8,7 @@ import { ArrowState, FilterEvent, SortFields } from 'src/app/shared/models/types
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css'],
 })
-export class FilterComponent {
+export class FilterComponent implements OnInit, OnDestroy {
   @Output() filterByField: EventEmitter<FilterEvent> = new EventEmitter();
   @Output() filterByWord: EventEmitter<string> = new EventEmitter();
   viewState: ArrowState = {
@@ -19,6 +21,15 @@ export class FilterComponent {
   };
   inputWord = '';
   isOpen = false;
+  private sub: Subscription = new Subscription();
+
+  constructor(private stateService: StateService) {}
+
+  public ngOnInit(): void {
+    this.sub = this.stateService.data$.subscribe((data) => {
+      this.isOpen = data;
+    });
+  }
 
   sortByField(fieldName: string): void {
     if (fieldName === SortFields.DATE) {
@@ -47,7 +58,7 @@ export class FilterComponent {
     this.filterByWord.emit(this.inputWord);
   }
 
-  toggleFilter() {
-    this.isOpen = !this.isOpen;
+  public ngOnDestroy(): void {
+    if (this.sub) this.sub.unsubscribe();
   }
 }

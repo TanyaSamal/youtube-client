@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'app-header',
@@ -6,14 +7,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  @Output() search: EventEmitter<void> = new EventEmitter();
-  @Output() openFilter: EventEmitter<void> = new EventEmitter();
+  isFilterShown = false;
 
-  emitSearch() {
-    this.search.emit();
-  }
+  constructor(private stateService: StateService) {}
 
   showFilter() {
-    this.openFilter.emit();
+    this.isFilterShown = !this.isFilterShown;
+    this.stateService.updatedDataSelection(this.isFilterShown);
   }
 }
