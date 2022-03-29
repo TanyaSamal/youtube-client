@@ -1,14 +1,9 @@
 export interface ISearchCard {
   kind: string;
   etag: string;
-  id: IVideoId;
+  id: string;
   snippet: ISnippet;
   statistics: IStatistisc;
-}
-
-interface IVideoId {
-  kind: string;
-  videoId: string;
 }
 
 interface ISnippet {
