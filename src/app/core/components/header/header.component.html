@@ -1,8 +1,9 @@
 <header>
   <div class="container header-container">
-    <div class="logo"></div>
+    <div class="logo" routerLink=""></div>
     <app-search-field></app-search-field>
-    <button mat-button matSuffix mat-flat-button aria-label="filter" class="filter-btn" (click)="showFilter()">
+    <button *ngIf="isSearchPage" mat-button matSuffix mat-flat-button aria-label="filter" class="filter-btn"
+      (click)="showFilter()">
       <mat-icon>sort</mat-icon>
     </button>
     <app-user-info></app-user-info>
