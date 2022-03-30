@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -12,7 +13,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   private sub: Subscription = new Subscription();
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.sub = this.authService.data$.subscribe((data) => {
@@ -23,6 +24,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy() {

@@ -25,10 +25,10 @@ export class AuthService {
   }
 
   logout(): void {
+    window.localStorage.removeItem('userToken');
     this.updatedDataSelection({
       isAuth: false,
       userName: '',
     });
-    window.localStorage.removeItem('userToken');
   }
 }
