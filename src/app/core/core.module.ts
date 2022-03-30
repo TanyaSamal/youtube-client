@@ -8,6 +8,7 @@ import { SearchFieldComponent } from './components/header/search-field/search-fi
 import { UserInfoComponent } from './components/header/user-info/user-info.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AuthService } from './services/auth.service';
 import { StateService } from './services/state.service';
 
 @NgModule({
@@ -21,6 +22,6 @@ import { StateService } from './services/state.service';
   ],
   exports: [HeaderComponent, FooterComponent],
   imports: [CommonModule, RouterModule, SharedModule],
-  providers: [StateService],
+  providers: [StateService, AuthService],
 })
 export class CoreModule {}

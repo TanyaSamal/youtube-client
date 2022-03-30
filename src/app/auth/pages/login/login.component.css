@@ -1,0 +1,13 @@
+.login-container {
+  padding-top: 40px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #2f80ed;
+  float: right;
+  width: 30%;
+}
