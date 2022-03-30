@@ -18,3 +18,9 @@ p {
 mat-form-field {
   width: 100%;
 }
+
+@media (max-width: 460px) {
+  .auth-form {
+    width: 250px;
+  }
+}

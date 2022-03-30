@@ -43,3 +43,15 @@ footer {
   transition: 0.3s;
   fill: #6e6e6e;
 }
+
+@media (max-width: 460px) {
+  .rs-link svg {
+    width: 60px;
+    height: 20px;
+  }
+
+  .gh-logo svg {
+    width: 20px;
+    height: 20px;
+  }
+}

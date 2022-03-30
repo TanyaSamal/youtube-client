@@ -31,6 +31,6 @@
 
 @media (max-width: 600px) {
   .user-info {
-    display: none;
+    position: relative;
   }
 }
