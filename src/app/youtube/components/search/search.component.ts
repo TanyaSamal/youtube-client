@@ -8,7 +8,7 @@ import { YoutubeService } from '../../services/youtube.service';
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  providers: [SortByFieldPipe, FilterByWordPipe, YoutubeService],
+  providers: [SortByFieldPipe, FilterByWordPipe],
 })
 export class SearchComponent implements OnInit {
   searchResults: ISearchResponse = Object.assign({});
@@ -26,7 +26,8 @@ export class SearchComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.searchResults = await this.youtubeService.getResponse();
+    await this.youtubeService.getResponse();
+    this.searchResults = this.youtubeService.response;
     this.setOriginalResponse();
   }
 

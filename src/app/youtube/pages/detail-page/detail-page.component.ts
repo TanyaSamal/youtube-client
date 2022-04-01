@@ -9,7 +9,6 @@ import { YoutubeService } from '../../services/youtube.service';
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
   styleUrls: ['./detail-page.component.css'],
-  providers: [YoutubeService],
 })
 export class DetailPageComponent implements OnInit {
   id = '';
@@ -22,9 +21,9 @@ export class DetailPageComponent implements OnInit {
     private location: Location,
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.id = this.activateRoute.snapshot.params['id'];
-    const response: ISearchResponse = await this.yoyubeService.getResponse();
+    const response: ISearchResponse = this.yoyubeService.response;
     this.item = response.items.find((item) => item.id === this.id)!;
     this.isLoaded = Object.keys(this.item).length !== 0;
   }

@@ -16,6 +16,10 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    if (window.localStorage.getItem('userToken')) {
+      this.isLoggedIn = !!window.localStorage.getItem('userToken');
+      this.username = window.localStorage.getItem('userName')!;
+    }
     this.sub = this.authService.data$.subscribe((data) => {
       this.isLoggedIn = data.isAuth;
       this.username = data.userName;

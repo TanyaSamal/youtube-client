@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ISearchResponse } from '../models/search.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class YoutubeService {
   private responseUrl = '../../../assets/responce.json';
+  response: ISearchResponse = Object.assign({});
 
-  async getResponse(): Promise<ISearchResponse> {
+  async getResponse() {
     const res = await fetch(this.responseUrl);
-    return res.json();
+    this.response = await res.json();
   }
 }
