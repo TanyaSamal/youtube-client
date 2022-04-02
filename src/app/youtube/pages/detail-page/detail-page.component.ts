@@ -14,6 +14,7 @@ import { YoutubeService } from '../../services/youtube.service';
 export class DetailPageComponent implements OnInit, OnDestroy {
   public isLoaded = false;
   public item: ISearchCard = Object.assign({});
+  public imgUrl = '';
   private sub: Subscription = new Subscription();
 
   constructor(
@@ -25,7 +26,12 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.sub = this.route.params.pipe(pluck('id')).subscribe((id) => {
       this.item = this.youtubeService.getVideoById(id);
-      if (this.item) this.isLoaded = true;
+      if (this.item) {
+        this.isLoaded = true;
+        this.imgUrl = this.item.snippet.thumbnails.standard
+          ? this.item.snippet.thumbnails.standard.url
+          : this.item.snippet.thumbnails.medium.url;
+      }
     });
   }
 
