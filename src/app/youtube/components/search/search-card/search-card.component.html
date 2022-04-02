@@ -1,5 +1,5 @@
 <div class="card" appColorBorder publishedDate="{{ item.snippet.publishedAt }}">
-  <img src="{{ item.snippet.thumbnails.medium.url }}">
+  <img src="{{ item.snippet.thumbnails.medium.url }}" width="210" height="120">
   <app-card-statistic [item]="item"></app-card-statistic>
   <p>{{ item.snippet.title }}</p>
   <a mat-raised-button [routerLink]="['/card', item.id]">More...</a>

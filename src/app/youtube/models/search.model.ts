@@ -3,7 +3,9 @@ import { ISearchCard } from './search-card.model';
 export interface ISearchResponse {
   kind: string;
   etag: string;
-  pageInfo: IPageInfo;
+  nextPageToken?: string;
+  regionCode?: string;
+  pageInfo?: IPageInfo;
   items: ISearchCard[];
 }
 

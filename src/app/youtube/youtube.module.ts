@@ -26,5 +26,6 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
     DetailPageComponent,
   ],
   imports: [CommonModule, SharedModule, YoutubeRoutingModule],
+  exports: [DetailPageComponent],
 })
 export class YoutubeModule {}

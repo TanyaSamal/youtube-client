@@ -1,0 +1,10 @@
+{
+  "apiUrl": "https://www.googleapis.com/youtube/v3/",
+  "key": "AIzaSyCCS6lbNp7tUOZBU5dGdd87H8O_NgJsFBw",
+  "searchUrl": "search",
+  "statisticUrl": "videos",
+  "type": "video",
+  "part": "snippet",
+  "maxResults": 15,
+  "statisticPart": "snippet,statistics"
+}

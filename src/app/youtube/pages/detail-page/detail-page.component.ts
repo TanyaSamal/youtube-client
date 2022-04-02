@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 import { ISearchCard } from '../../models/search-card.model';
-import { ISearchResponse } from '../../models/search.model';
 import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
@@ -10,25 +11,29 @@ import { YoutubeService } from '../../services/youtube.service';
   templateUrl: './detail-page.component.html',
   styleUrls: ['./detail-page.component.css'],
 })
-export class DetailPageComponent implements OnInit {
-  id = '';
-  isLoaded = false;
+export class DetailPageComponent implements OnInit, OnDestroy {
+  public isLoaded = false;
   public item: ISearchCard = Object.assign({});
+  private sub: Subscription = new Subscription();
 
   constructor(
-    private activateRoute: ActivatedRoute,
-    private yoyubeService: YoutubeService,
+    private route: ActivatedRoute,
+    private youtubeService: YoutubeService,
     private location: Location,
   ) {}
 
-  ngOnInit(): void {
-    this.id = this.activateRoute.snapshot.params['id'];
-    const response: ISearchResponse = this.yoyubeService.response;
-    this.item = response.items.find((item) => item.id === this.id)!;
-    this.isLoaded = Object.keys(this.item).length !== 0;
+  public ngOnInit(): void {
+    this.sub = this.route.params.pipe(pluck('id')).subscribe((id) => {
+      this.item = this.youtubeService.getVideoById(id);
+      if (this.item) this.isLoaded = true;
+    });
   }
 
-  goBack(): void {
+  public goBack(): void {
     this.location.back();
+  }
+
+  public ngOnDestroy(): void {
+    if (this.sub) this.sub.unsubscribe();
   }
 }

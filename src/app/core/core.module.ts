@@ -21,7 +21,7 @@ import { StateService } from './services/state.service';
     NotFoundComponent,
     MainPageComponent,
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, SearchFieldComponent],
   imports: [CommonModule, RouterModule, SharedModule],
   providers: [StateService, AuthService, AuthGuard],
 })

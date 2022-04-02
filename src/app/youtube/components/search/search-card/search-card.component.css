@@ -16,6 +16,7 @@ img {
 }
 
 p {
+  max-height: 90px;
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
@@ -34,16 +35,6 @@ a {
 }
 
 @media (max-width: 800px) {
-  /* img {
-    width: 150px;
-    height: 80px;
-  }
-
-  .card {
-    height: 273px;
-    width: 190px;
-  } */
-
   p {
     font-size: 16px;
     line-height: 18px;

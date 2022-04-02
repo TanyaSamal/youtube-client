@@ -8,7 +8,7 @@ import { DetailPageComponent } from './youtube/pages/detail-page/detail-page.com
 const routes: Routes = [
   { path: '', component: MainPageComponent, canActivate: [AuthGuard] },
   {
-    path: 'search',
+    path: 'search/:searchValue',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
     canLoad: [AuthGuard],
   },

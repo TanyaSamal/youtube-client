@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
-        this.isSearchPage = val.url === '/search';
+        this.isSearchPage = val.url.startsWith('/search');
       }
     });
   }

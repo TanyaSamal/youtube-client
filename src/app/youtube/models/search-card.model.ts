@@ -1,9 +1,14 @@
 export interface ISearchCard {
   kind: string;
   etag: string;
-  id: string;
+  id: IVideoId | string;
   snippet: ISnippet;
   statistics: IStatistisc;
+}
+
+interface IVideoId {
+  kind: string;
+  videoId: string;
 }
 
 interface ISnippet {
@@ -14,11 +19,10 @@ interface ISnippet {
   description: string;
   thumbnails: IThumbnails;
   channelTitle: string;
-  tags: Array<string>;
-  categoryId: string;
+  tags?: Array<string>;
+  categoryId?: string;
   liveBroadcastContent: string;
-  localized: ILocalized;
-  defaultAudioLanguage: string;
+  localized?: ILocalized;
 }
 
 interface ILocalized {
@@ -31,7 +35,7 @@ interface IThumbnails {
   medium: IThumbnail;
   high: IThumbnail;
   standard: IThumbnail;
-  maxres: IThumbnail;
+  maxres?: IThumbnail;
 }
 
 interface IThumbnail {
@@ -43,7 +47,6 @@ interface IThumbnail {
 export interface IStatistisc {
   viewCount: string;
   likeCount: string;
-  dislikeCount: string;
   favoriteCount: string;
   commentCount: string;
 }

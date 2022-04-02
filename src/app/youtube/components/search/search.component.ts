@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { pluck, tap } from 'rxjs/operators';
 import { ISearchResponse } from 'src/app/youtube/models/search.model';
 import { FilterByWordPipe } from 'src/app/youtube/pipes/filterByWord.pipe';
 import { SortByFieldPipe } from 'src/app/youtube/pipes/sortByField.pipe';
@@ -10,12 +13,14 @@ import { YoutubeService } from '../../services/youtube.service';
   styleUrls: ['./search.component.css'],
   providers: [SortByFieldPipe, FilterByWordPipe],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   searchResults: ISearchResponse = Object.assign({});
   filteredResponse: ISearchResponse = Object.assign({});
   nothingFound = false;
+  private sub: Subscription = new Subscription();
 
   constructor(
+    private route: ActivatedRoute,
     private sortByFieldPipe: SortByFieldPipe,
     private filterByWordPipe: FilterByWordPipe,
     private youtubeService: YoutubeService,
@@ -25,10 +30,19 @@ export class SearchComponent implements OnInit {
     this.filteredResponse = Object.assign({}, this.searchResults);
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.youtubeService.getResponse();
-    this.searchResults = this.youtubeService.response;
-    this.setOriginalResponse();
+  public ngOnInit(): void {
+    this.sub = this.route.params
+      .pipe(
+        pluck('searchValue'),
+        tap((searchValue: string) => {
+          this.youtubeService.getResponse(searchValue);
+        }),
+      )
+      .subscribe();
+    this.youtubeService.data$.subscribe((data) => {
+      this.searchResults = data;
+      this.setOriginalResponse();
+    });
   }
 
   filterByField(up: boolean, field: string): void {
@@ -42,5 +56,9 @@ export class SearchComponent implements OnInit {
       word,
     );
     this.nothingFound = this.filteredResponse.items.length === 0;
+  }
+
+  public ngOnDestroy(): void {
+    if (this.sub) this.sub.unsubscribe();
   }
 }
