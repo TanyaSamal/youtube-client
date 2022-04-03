@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { fromEvent } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { Constants } from 'src/app/shared/models/constants';
 
 @Component({
   selector: 'app-search-field',
@@ -9,19 +10,20 @@ import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators'
   styleUrls: ['./search-field.component.css'],
 })
 export class SearchFieldComponent implements OnInit {
+  public searchValue = '';
+  public newSearchValue = new Subject<string>();
+
   constructor(private router: Router) {}
 
   public ngOnInit(): void {
-    const searchInput = <HTMLInputElement>document.querySelector('.search-input');
-    fromEvent(searchInput, 'input')
+    this.newSearchValue
       .pipe(
-        map((event) => (<HTMLInputElement>event.target).value),
-        filter((text: string) => text.length > 3),
-        debounceTime(50),
+        filter((text: string) => text.length > Constants.MIN_CHARACTERS),
+        debounceTime(Constants.DEBOUNCE_TIME),
         distinctUntilChanged(),
+        catchError((error) => of(error)),
       )
       .subscribe((searchTerm) => {
-        console.log(searchTerm);
         this.router.navigate(['/search', searchTerm]);
       });
   }
