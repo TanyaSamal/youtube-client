@@ -4,11 +4,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { INTERCEPTOR_PROVIDERS } from './core/interceptors/providers';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, CoreModule],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDERS],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

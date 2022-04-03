@@ -24,14 +24,13 @@ export class YoutubeHttpService {
     return this.configService.getConfig().pipe(
       switchMap((config) => {
         const videoParams = {
-          key: config.key,
           type: config.type,
           part: config.part,
           maxResults: config.maxResults,
           q: query,
         };
         const queryVideo = this.joinParams(videoParams);
-        return this.http.get<ISearchResponse>(`${config.apiUrl}${config.searchUrl}?${queryVideo}`);
+        return this.http.get<ISearchResponse>(`${config.searchUrl}?${queryVideo}`);
       }),
     );
   }
@@ -40,14 +39,11 @@ export class YoutubeHttpService {
     return this.configService.getConfig().pipe(
       switchMap((config) => {
         const statParams = {
-          key: config.key,
           id: idStr,
           part: config.statisticPart,
         };
         const queryStat = this.joinParams(statParams);
-        return this.http.get<ISearchResponse>(
-          `${config.apiUrl}${config.statisticUrl}?${queryStat}`,
-        );
+        return this.http.get<ISearchResponse>(`${config.statisticUrl}?${queryStat}`);
       }),
     );
   }
