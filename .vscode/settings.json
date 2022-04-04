@@ -6,7 +6,7 @@
   },
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
-  "files.eol": "\r\n",
+  "files.eol": "\n",
   "search.exclude": {
       ".vscode": true,
       "dist": true,
