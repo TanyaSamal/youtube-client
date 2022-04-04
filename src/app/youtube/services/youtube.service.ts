@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ISearchResponse } from '../models/search.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'any' })
 export class YoutubeService {
   private responseUrl = '../../../assets/responce.json';
   response: ISearchResponse = Object.assign({});

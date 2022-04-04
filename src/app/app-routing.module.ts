@@ -13,8 +13,13 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   { path: 'login', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
-  { path: 'card/:id', component: DetailPageComponent, canActivate: [AuthGuard] },
-  { path: '**', component: NotFoundComponent },
+  {
+    path: 'card/:id',
+    component: DetailPageComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   ) {}
 
   private setOriginalResponse(): void {
-    this.filteredResponse = Object.assign({}, this.searchResults);
+    this.filteredResponse = { ...this.searchResults };
   }
 
   async ngOnInit(): Promise<void> {

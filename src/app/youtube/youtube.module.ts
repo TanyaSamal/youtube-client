@@ -10,7 +10,6 @@ import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { FilterByWordPipe } from './pipes/filterByWord.pipe';
 import { SortByFieldPipe } from './pipes/sortByField.pipe';
-// import { YoutubeService } from './services/youtube.service';
 import { YoutubeRoutingModule } from './youtube-routing.module';
 
 @NgModule({
