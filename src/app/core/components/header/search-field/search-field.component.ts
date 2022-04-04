@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SearchFieldComponent {
   constructor(private router: Router) {}
 
-  startsearch() {
+  public startsearch() {
     this.router.navigate(['/search']);
   }
 }

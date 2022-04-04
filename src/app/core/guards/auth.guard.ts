@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CanActivateChild, CanLoad, Router } from '@angular/router';
+import { CanLoad, Router } from '@angular/router';
 
 @Injectable()
-export class AuthGuard implements CanLoad, CanActivateChild {
+export class AuthGuard implements CanLoad {
   constructor(private router: Router) {}
-
-  public canActivateChild(): boolean {
-    return this.canLoad();
-  }
 
   public canActivate(): boolean {
     return this.canLoad();

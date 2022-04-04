@@ -12,11 +12,11 @@ export class SearchPageComponent {
   @ViewChild(SearchComponent) viewSearch: SearchComponent = Object.assign({});
   @ViewChild(FilterComponent) viewFilterh: FilterComponent = Object.assign({});
 
-  filterByField(filterEvent: FilterEvent): void {
+  public filterByField(filterEvent: FilterEvent): void {
     this.viewSearch.filterByField(filterEvent.direction, filterEvent.field);
   }
 
-  filterByWord(word: string): void {
+  public filterByWord(word: string): void {
     this.viewSearch.filterByWord(word);
   }
 }

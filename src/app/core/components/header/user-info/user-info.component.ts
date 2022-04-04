@@ -9,13 +9,13 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./user-info.component.css'],
 })
 export class UserInfoComponent implements OnInit, OnDestroy {
-  username = 'Your name';
-  isLoggedIn = false;
+  public username = 'Your name';
+  public isLoggedIn = false;
   private sub: Subscription = new Subscription();
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     if (window.localStorage.getItem('userToken')) {
       this.isLoggedIn = !!window.localStorage.getItem('userToken');
       this.username = window.localStorage.getItem('userName')!;
@@ -26,12 +26,12 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLogout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
+  public ngOnDestroy() {
+    if (this.sub) this.sub.unsubscribe();
   }
 
-  ngOnDestroy() {
-    if (this.sub) this.sub.unsubscribe();
+  public onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

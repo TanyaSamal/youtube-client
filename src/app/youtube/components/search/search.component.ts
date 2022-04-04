@@ -11,9 +11,9 @@ import { YoutubeService } from '../../services/youtube.service';
   providers: [SortByFieldPipe, FilterByWordPipe],
 })
 export class SearchComponent implements OnInit {
-  searchResults: ISearchResponse = Object.assign({});
-  filteredResponse: ISearchResponse = Object.assign({});
-  nothingFound = false;
+  public searchResults: ISearchResponse = Object.assign({});
+  public filteredResponse: ISearchResponse = Object.assign({});
+  public nothingFound = false;
 
   constructor(
     private sortByFieldPipe: SortByFieldPipe,
@@ -21,21 +21,21 @@ export class SearchComponent implements OnInit {
     private youtubeService: YoutubeService,
   ) {}
 
-  private setOriginalResponse(): void {
-    this.filteredResponse = { ...this.searchResults };
-  }
-
-  async ngOnInit(): Promise<void> {
+  public async ngOnInit(): Promise<void> {
     await this.youtubeService.getResponse();
     this.searchResults = this.youtubeService.response;
     this.setOriginalResponse();
   }
 
-  filterByField(up: boolean, field: string): void {
+  private setOriginalResponse(): void {
+    this.filteredResponse = { ...this.searchResults };
+  }
+
+  public filterByField(up: boolean, field: string): void {
     this.sortByFieldPipe.transform(this.filteredResponse.items, up, field);
   }
 
-  filterByWord(word: string): void {
+  public filterByWord(word: string): void {
     this.setOriginalResponse();
     this.filteredResponse.items = this.filterByWordPipe.transform(
       this.filteredResponse.items,

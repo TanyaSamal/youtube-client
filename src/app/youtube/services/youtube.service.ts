@@ -3,10 +3,10 @@ import { ISearchResponse } from '../models/search.model';
 
 @Injectable({ providedIn: 'any' })
 export class YoutubeService {
+  public response: ISearchResponse = Object.assign({});
   private responseUrl = '../../../assets/responce.json';
-  response: ISearchResponse = Object.assign({});
 
-  async getResponse() {
+  public async getResponse() {
     const res = await fetch(this.responseUrl);
     this.response = await res.json();
   }
