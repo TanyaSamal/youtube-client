@@ -1,0 +1,17 @@
+<div class="auth-form">
+  <ng-content select="[header]"></ng-content>
+
+  <ng-content select="[field]"></ng-content>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="pat@example.com" required class="user-email">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" required class="user-pass">
+  </mat-form-field>
+
+  <ng-content select="[button]"></ng-content>
+</div>

@@ -1,0 +1,8 @@
+<section class="search">
+  <div class="container search-container show">
+    <app-search-card *ngFor="let i of filteredResponse.items" [item]="i"></app-search-card>
+  </div>
+  <div class="container">
+    <div class="empty-results" *ngIf="nothingFound">Nothing Found :(</div>
+  </div>
+</section>

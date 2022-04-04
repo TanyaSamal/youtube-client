@@ -1,0 +1,36 @@
+.user-info {
+  position: absolute;
+  right: 0;
+  top: calc(50% - 12px);
+}
+
+.logged-info {
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+}
+
+.user-picture {
+  width: 24px;
+  height: 24px;
+  background: url('../../../../../assets/login.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.user-name {
+  margin: 0;
+}
+
+.logout-btn,
+.login-btn {
+  background-color: #2f80ed;
+  line-height: 32px;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .user-info {
+    position: relative;
+  }
+}

@@ -1,0 +1,57 @@
+footer {
+  width: 100%;
+  height: 64px;
+  background-color: #e5e5e5;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #7e7e7e;
+  padding: 10px 0;
+}
+
+.gh-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #7e7e7e;
+}
+
+.gh-link:hover span {
+  color: #6e6e6e;
+}
+
+.gh-link:hover svg path {
+  transition: 0.3s;
+  fill: #6e6e6e;
+}
+
+.gh-logo svg {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.rs-link svg {
+  width: 100px;
+  height: 40px;
+}
+
+.rs-link svg:hover path {
+  transition: 0.3s;
+  fill: #6e6e6e;
+}
+
+@media (max-width: 460px) {
+  .rs-link svg {
+    width: 60px;
+    height: 20px;
+  }
+
+  .gh-logo svg {
+    width: 20px;
+    height: 20px;
+  }
+}

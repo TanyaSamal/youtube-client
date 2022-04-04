@@ -1,3 +1,5 @@
-<app-header (search)="showResults()" (openFilter)="openFilter()"></app-header>
-<app-filter (filterByField)="filterByField($event)" (filterByWord)="filterByWord($event)"></app-filter>
-<app-search></app-search>
+<app-header></app-header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<app-footer></app-footer>
