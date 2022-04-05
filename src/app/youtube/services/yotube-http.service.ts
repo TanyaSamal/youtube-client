@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
 import { IConfigParams } from 'src/app/shared/models/config';
 import { ConfigService } from 'src/app/shared/services/config.service';
 import { ISearchResponse } from '../models/search.model';
@@ -23,6 +23,9 @@ export class YoutubeHttpService {
         };
         const queryVideo = this.joinParams(videoParams);
         return this.http.get<ISearchResponse>(`${config.searchUrl}?${queryVideo}`);
+      }),
+      catchError((error) => {
+        return throwError(() => error);
       }),
     );
   }

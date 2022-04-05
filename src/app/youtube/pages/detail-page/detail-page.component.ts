@@ -40,16 +40,21 @@ export class DetailPageComponent implements OnInit, OnDestroy {
           return items.find((elem) => elem.id === cardId);
         }),
       )
-      .subscribe((card) => {
-        if (card) {
-          this.item = { ...card };
-          this.isLoaded = true;
-          this.imgUrl = this.item.snippet.thumbnails.standard
-            ? this.item.snippet.thumbnails.standard.url
-            : this.item.snippet.thumbnails.medium.url;
-        } else {
-          this.router.navigateByUrl('404');
-        }
+      .subscribe({
+        next: (card) => {
+          if (card) {
+            this.item = { ...card };
+            this.isLoaded = true;
+            this.imgUrl = this.item.snippet.thumbnails.standard
+              ? this.item.snippet.thumbnails.standard.url
+              : this.item.snippet.thumbnails.medium.url;
+          } else {
+            this.router.navigateByUrl('404');
+          }
+        },
+        error: () => {
+          throw new Error('Invalid request');
+        },
       });
   }
 

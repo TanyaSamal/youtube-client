@@ -3,6 +3,7 @@
     <app-search-card *ngFor="let i of filteredResponse.items" [item]="i" [search]="searchTerm"></app-search-card>
   </div>
   <div class="container">
-    <div class="empty-results" *ngIf="nothingFound">Nothing Found :(</div>
+    <div class="empty-results" *ngIf="nothingFound">Nothing found :(</div>
+    <div class="empty-results" *ngIf="errorMessage">Invalid request :(</div>
   </div>
 </section>

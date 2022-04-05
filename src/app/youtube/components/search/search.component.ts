@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public filteredResponse: ISearchResponse = Object.assign({});
   public nothingFound = false;
   public searchTerm = '';
+  public errorMessage = false;
   private searchResults: ISearchResponse = Object.assign({});
   private sub: Subscription = new Subscription();
 
@@ -36,9 +37,15 @@ export class SearchComponent implements OnInit, OnDestroy {
           return this.youtubeService.getResponse(searchValue);
         }),
       )
-      .subscribe((data) => {
-        this.searchResults = data;
-        this.setOriginalResponse();
+      .subscribe({
+        next: (data) => {
+          this.searchResults = data;
+          this.setOriginalResponse();
+        },
+        error: () => {
+          this.errorMessage = true;
+          throw new Error('Invalid request');
+        },
       });
   }
 

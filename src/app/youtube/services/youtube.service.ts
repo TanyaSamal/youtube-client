@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, switchMap } from 'rxjs';
+import { catchError, Observable, Subject, switchMap, throwError } from 'rxjs';
 import { ISearchResponse } from '../models/search.model';
 import { YoutubeHttpService } from './yotube-http.service';
 
@@ -20,6 +20,9 @@ export class YoutubeService {
           idStr += `${typeof item.id === 'string' ? item.id : item.id.videoId},`;
         });
         return this.youtubeHttp.getStatistic(idStr);
+      }),
+      catchError((error) => {
+        return throwError(() => error);
       }),
     );
   }
