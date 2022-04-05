@@ -8,4 +8,5 @@ import { ISearchCard } from 'src/app/youtube/models/search-card.model';
 })
 export class SearchCardComponent {
   @Input() public item: ISearchCard = Object.assign({});
+  @Input() public search = '';
 }

@@ -2,5 +2,5 @@
   <img src="{{ item.snippet.thumbnails.medium.url }}" width="210" height="120">
   <app-card-statistic [item]="item"></app-card-statistic>
   <p>{{ item.snippet.title }}</p>
-  <a mat-raised-button [routerLink]="['/card', item.id]">More...</a>
+  <a mat-raised-button [routerLink]="['/card', item.id]" [queryParams]="{'search': search }">More...</a>
 </div>

@@ -18,7 +18,7 @@ export class SearchFieldComponent implements OnInit {
   public ngOnInit(): void {
     this.newSearchValue
       .pipe(
-        filter((text: string) => text.length > Constants.MIN_CHARACTERS),
+        filter((text: string) => text.length >= Constants.MIN_CHARACTERS),
         debounceTime(Constants.DEBOUNCE_TIME),
         distinctUntilChanged(),
         catchError((error) => of(error)),

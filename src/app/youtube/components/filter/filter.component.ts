@@ -9,18 +9,18 @@ import { ArrowState, FilterEvent, SortFields } from 'src/app/shared/models/types
   styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent implements OnInit, OnDestroy {
-  @Output() filterByField: EventEmitter<FilterEvent> = new EventEmitter();
-  @Output() filterByWord: EventEmitter<string> = new EventEmitter();
-  viewState: ArrowState = {
+  @Output() public filterByField = new EventEmitter<FilterEvent>();
+  @Output() public filterByWord = new EventEmitter<string>();
+  public viewState: ArrowState = {
     show: false,
     up: false,
   };
-  dateState: ArrowState = {
+  public dateState: ArrowState = {
     show: false,
     up: false,
   };
-  inputWord = '';
-  isOpen = false;
+  public inputWord = '';
+  public isOpen = false;
   private sub: Subscription = new Subscription();
 
   constructor(private stateService: StateService) {}
@@ -31,7 +31,11 @@ export class FilterComponent implements OnInit, OnDestroy {
     });
   }
 
-  sortByField(fieldName: string): void {
+  public ngOnDestroy(): void {
+    if (this.sub) this.sub.unsubscribe();
+  }
+
+  public sortByField(fieldName: string): void {
     if (fieldName === SortFields.DATE) {
       this.dateState.show = true;
       this.dateState.up = !this.dateState.up;
@@ -51,14 +55,10 @@ export class FilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  sortByWord(event: Event): void {
+  public sortByWord(event: Event): void {
     this.dateState.show = false;
     this.viewState.show = false;
     this.inputWord = (<HTMLInputElement>event.target).value;
     this.filterByWord.emit(this.inputWord);
-  }
-
-  public ngOnDestroy(): void {
-    if (this.sub) this.sub.unsubscribe();
   }
 }

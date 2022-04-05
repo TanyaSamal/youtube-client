@@ -14,7 +14,8 @@ const routes: Routes = [
   },
   { path: 'login', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
   { path: 'card/:id', component: DetailPageComponent, canActivate: [AuthGuard] },
-  { path: '**', component: NotFoundComponent },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

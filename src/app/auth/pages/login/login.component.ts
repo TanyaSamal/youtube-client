@@ -9,7 +9,7 @@ import { IUser } from '../../models/user.model';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  user: IUser = {
+  public user: IUser = {
     email: '',
     password: '',
     name: '',
@@ -17,7 +17,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit() {
+  public onSubmit() {
     const emailInput = <HTMLInputElement>document.querySelector('.user-email');
     if (emailInput && emailInput.value) this.user.email = emailInput.value;
     const passInput = <HTMLInputElement>document.querySelector('.user-pass');

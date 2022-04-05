@@ -18,7 +18,7 @@ export class ConfigService {
     );
   }
 
-  getConfig() {
+  public getConfig() {
     return this.config ? of(this.config) : this.config$;
   }
 }

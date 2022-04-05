@@ -5,15 +5,8 @@ import { Constants } from '../../shared/models/constants';
   selector: '[appColorBorder]',
 })
 export class ColorBorderDirective {
-  private borderBottom: string = '#ed2f2f';
-
   @Input() public publishedDate: string = '';
-
-  private getTimePeriod(): number {
-    const now: number = Date.now();
-    const publishedAt: number = Date.parse(this.publishedDate);
-    return now - publishedAt;
-  }
+  private borderBottom: string = '#ed2f2f';
 
   @HostBinding('style.borderBottomColor') public get getBorderBottomColor(): string {
     const period: number = this.getTimePeriod();
@@ -25,5 +18,11 @@ export class ColorBorderDirective {
       this.borderBottom = Constants.RED_BORDER;
     }
     return this.borderBottom;
+  }
+
+  private getTimePeriod(): number {
+    const now: number = Date.now();
+    const publishedAt: number = Date.parse(this.publishedDate);
+    return now - publishedAt;
   }
 }

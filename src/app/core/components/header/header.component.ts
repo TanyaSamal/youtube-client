@@ -9,13 +9,13 @@ import { StateService } from '../../services/state.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  isFilterShown = false;
-  isSearchPage = false;
-  sub: Subscription = new Subscription();
+  public isFilterShown = false;
+  public isSearchPage = false;
+  private sub: Subscription = new Subscription();
 
   constructor(private stateService: StateService, private router: Router) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.sub = this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.isSearchPage = val.url.startsWith('/search');
@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  showFilter() {
-    this.isFilterShown = !this.isFilterShown;
-    this.stateService.updatedDataSelection(this.isFilterShown);
+  public ngOnDestroy() {
+    if (this.sub) this.sub.unsubscribe();
   }
 
-  ngOnDestroy() {
-    if (this.sub) this.sub.unsubscribe();
+  public showFilter() {
+    this.isFilterShown = !this.isFilterShown;
+    this.stateService.updatedDataSelection(this.isFilterShown);
   }
 }
