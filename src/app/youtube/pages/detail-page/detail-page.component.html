@@ -18,4 +18,7 @@
       </div>
     </div>
   </div>
+  <div class="info-container" *ngIf="!isLoaded">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
 </section>

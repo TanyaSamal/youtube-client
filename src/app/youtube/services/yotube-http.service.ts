@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
 import { IConfigParams } from 'src/app/shared/models/config';
-import { ConfigService } from 'src/app/shared/services/config.service';
+import { ConfigService } from 'src/app/core/services/config.service';
 import { ISearchResponse } from '../models/search.model';
 
 @Injectable({

@@ -80,3 +80,10 @@ p {
   margin: 0 22%;
   padding-bottom: 10px;
 }
+
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { pluck } from 'rxjs/operators';
+import { ProgressService } from 'src/app/core/services/progress.service';
 import { ISearchResponse } from 'src/app/youtube/models/search.model';
 import { FilterByWordPipe } from 'src/app/youtube/pipes/filterByWord.pipe';
 import { SortByFieldPipe } from 'src/app/youtube/pipes/sortByField.pipe';
@@ -18,6 +19,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public nothingFound = false;
   public searchTerm = '';
   public errorMessage = false;
+  public isLoading = false;
   private searchResults: ISearchResponse = Object.assign({});
   private sub: Subscription = new Subscription();
 
@@ -26,6 +28,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private sortByFieldPipe: SortByFieldPipe,
     private filterByWordPipe: FilterByWordPipe,
     private youtubeService: YoutubeService,
+    private progressService: ProgressService,
   ) {}
 
   public ngOnInit(): void {
@@ -40,6 +43,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => {
           this.searchResults = data;
+          this.nothingFound = data.items.length === 0;
           this.setOriginalResponse();
         },
         error: () => {
@@ -47,6 +51,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           throw new Error('Invalid request');
         },
       });
+    this.progressService.dataLoading$.subscribe((data) => (this.isLoading = data));
   }
 
   public ngOnDestroy(): void {

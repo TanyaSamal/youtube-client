@@ -1,9 +1,10 @@
 <section class="search">
-  <div class="container search-container show">
+  <div class="container search-container show" *ngIf="!isLoading">
     <app-search-card *ngFor="let i of filteredResponse.items" [item]="i" [search]="searchTerm"></app-search-card>
   </div>
-  <div class="container">
+  <div class="container info-container" *ngIf="nothingFound || errorMessage || isLoading">
     <div class="empty-results" *ngIf="nothingFound">Nothing found :(</div>
     <div class="empty-results" *ngIf="errorMessage">Invalid request :(</div>
+    <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
   </div>
 </section>

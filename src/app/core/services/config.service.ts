@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { take, tap, catchError } from 'rxjs/operators';
-import { IConfig } from '../models/config';
+import { IConfig } from '../../shared/models/config';
 
 @Injectable({
   providedIn: 'root',
