@@ -1,8 +1,15 @@
 <div class="user-info">
   <button mat-raised-button [routerLink]="['/login']" *ngIf="!isLoggedIn" class="login-btn">login</button>
   <div class="logged-info" *ngIf="isLoggedIn">
-    <p class="user-name">{{ username }}</p>
-    <div class="user-picture"></div>
-    <button mat-raised-button class="logout-btn" (click)="onLogout()">logout</button>
+    <div class="user-wrapper">
+      <p class="user-name">{{ username }}</p>
+      <div class="user-picture"></div>
+    </div>
+    <nav class="submenu">
+      <ul class="submenu-list">
+        <li class="submenu-element">Create card</li>
+        <li class="submenu-element" (click)="onLogout()">Logout</li>
+      </ul>
+    </nav>
   </div>
 </div>

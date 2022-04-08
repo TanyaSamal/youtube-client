@@ -1,6 +1,37 @@
 <section class="container login-container">
-  <app-auth-form>
-    <h2 header>Login</h2>
-    <button button mat-raised-button (click)="onSubmit()">Login</button>
-  </app-auth-form>
+  <div class="auth-form">
+    <h2>Login</h2>
+    <form novalidate autocomplete="off" [formGroup]="userForm" (ngSubmit)="userForm.valid && onLogin()">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="pat@example.com" name="email" class="user-email">
+        <mat-error *ngIf="email !== null && (email.dirty || email.touched)">
+          <span *ngIf="email.errors && email.hasError('required')">Please enter a login email</span>
+          <span *ngIf="email.invalid && !email.pending && !email.hasError('required')">The login email is invalid</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" name="password"
+          class="user-pass">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide" class="hiding-btn">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password !== null">
+          <span *ngIf="password.errors && password.hasError('required')">Please enter a password</span>
+          <span *ngIf="password.invalid && !password.hasError('required')">Your password isn't strong enough:
+            <span *ngIf="password.hasError('hasLength')">at least 8 characters, </span>
+            <span *ngIf="password.hasError('hasUpperLower')">a mixture of both uppercase and lowercase letters, </span>
+            <span *ngIf="password.hasError('hasNumberLetter')">a mixture of letters and numbers, </span>
+            <span *ngIf="password.hasError('hasSpecial')">at least one special character, </span>
+          </span>
+        </mat-error>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button [disabled]="userForm.invalid">Login</button>
+    </form>
+  </div>
 </section>

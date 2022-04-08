@@ -5,9 +5,7 @@
 }
 
 .logged-info {
-  display: flex;
-  align-items: center;
-  grid-gap: 10px;
+  position: relative;
 }
 
 .user-picture {
@@ -22,11 +20,63 @@
   margin: 0;
 }
 
-.logout-btn,
 .login-btn {
   background-color: #2f80ed;
   line-height: 32px;
   color: white;
+}
+
+.user-wrapper {
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  cursor: pointer;
+}
+
+nav {
+  display: table;
+  margin: 0 auto;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.submenu-list {
+  background: #e5e5e5;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 5;
+  width: 130px;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: 0 0;
+  transition: 0.5s ease-in-out;
+}
+
+.submenu-list li {
+  text-align: left;
+  padding: 12px 15px;
+  font-size: 0.9em;
+  border-bottom: 1px solid rgba(47, 128, 237, 0.5);
+  transition: 0.3s;
+}
+
+.submenu-list li:hover {
+  background-color: #2f80ed;
+  cursor: pointer;
+}
+
+.submenu-list li:last-child {
+  border-bottom: none;
+}
+
+.logged-info:hover .submenu-list {
+  opacity: 1;
+  transform: scaleY(1);
 }
 
 @media (max-width: 600px) {

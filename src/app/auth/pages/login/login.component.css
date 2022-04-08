@@ -1,13 +1,45 @@
 .login-container {
-  padding-top: 40px;
+  padding-top: 50px;
+}
+
+.auth-form {
+  background: #f2f2f2;
+  width: 345px;
+  height: 330px;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 
 h2 {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 button {
   background-color: #2f80ed;
   float: right;
   width: 30%;
+}
+
+.hiding-btn {
+  background-color: transparent;
+}
+
+p {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 460px) {
+  .auth-form {
+    width: 250px;
+  }
 }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
-import { IUser } from '../../models/user.model';
+import { PasswordValidator } from '../../validators/password.validator';
 
 @Component({
   selector: 'app-login',
@@ -9,24 +10,28 @@ import { IUser } from '../../models/user.model';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  public user: IUser = {
-    email: '',
-    password: '',
-    name: '',
-  };
+  public hide: boolean = true;
+  public userForm: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, PasswordValidator.check]],
+  });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) {}
 
-  public onSubmit() {
-    const emailInput = <HTMLInputElement>document.querySelector('.user-email');
-    if (emailInput && emailInput.value) this.user.email = emailInput.value;
-    const passInput = <HTMLInputElement>document.querySelector('.user-pass');
-    if (passInput && passInput.value) this.user.password = passInput.value;
-    const endSlice =
-      this.user.email.indexOf('@') !== -1 ? this.user.email.indexOf('@') : this.user.email.length;
-    this.user.name = this.user.email.slice(0, endSlice);
+  get email() {
+    return this.userForm.get('email');
+  }
 
-    this.authService.login(this.user);
+  get password() {
+    return this.userForm.get('password');
+  }
+
+  public onLogin() {
+    const emailInput = this.userForm.value.email;
+    const endSlice = emailInput.indexOf('@') !== -1 ? emailInput.indexOf('@') : emailInput.length;
+    const userName = emailInput.slice(0, endSlice);
+
+    this.authService.login(userName);
     this.router.navigate(['']);
   }
 }
