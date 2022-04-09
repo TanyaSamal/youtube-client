@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateValidator } from '../../validators/date.validator';
 
 @Component({
   selector: 'app-admin-page',
@@ -8,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   providers: [FormBuilder],
 })
 export class AdminPageComponent {
+  public isCreated = false;
   public adminForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
     description: ['', Validators.maxLength(255)],
@@ -19,7 +21,7 @@ export class AdminPageComponent {
       ],
     ],
     video: ['', [Validators.required, Validators.pattern(/(www|http:|https:)+[^\s]+[\w]/)]],
-    date: ['', [Validators.required]],
+    date: ['', [Validators.required, DateValidator.check]],
   });
 
   constructor(private fb: FormBuilder) {}
@@ -45,6 +47,6 @@ export class AdminPageComponent {
   }
 
   createCard() {
-    //
+    this.isCreated = true;
   }
 }

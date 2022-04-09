@@ -43,8 +43,9 @@
       <mat-form-field appearance="fill">
         <mat-label>Date</mat-label>
         <input type="date" matInput formControlName="date" name="date" class="admin-date">
-        <mat-error *ngIf="date !== null && (date.dirty || date.touched)">
+        <mat-error *ngIf="date !== null && date.dirty">
           <span *ngIf="date.errors && date.hasError('required')">Please enter a creation date</span>
+          <span *ngIf="date.invalid && date.hasError('invalidDate')">The date is invalid</span>
         </mat-error>
       </mat-form-field>
 
