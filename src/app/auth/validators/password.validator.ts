@@ -9,11 +9,9 @@ export class PasswordValidator {
     let hasNumber = /[0-9]/.test(control.value);
     let hasUpper = /[A-Z]/.test(control.value);
     let hasLower = /[a-z]/.test(control.value);
-    let hasSpecial = /[^(A-Za-z0-9)]/.test(control.value); // StringUtils.isAlphanumeric(value)
+    let hasSpecial = /[^(A-Za-z0-9)]/.test(control.value);
     let hasLength = control.value.length >= 8;
-    console.log(
-      `Num - ${hasNumber}, Upp - ${hasUpper}, Low - ${hasLower}, Spec - ${hasSpecial}, len - ${hasLength}`,
-    );
+
     const valid = hasNumber && hasUpper && hasLower && hasSpecial && hasLength;
     if (!valid) {
       return {

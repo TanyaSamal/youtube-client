@@ -1,18 +1,18 @@
-.login-container {
+.admin-container {
   padding-top: 50px;
 }
 
-.auth-form {
+.admin-form {
   background: #f2f2f2;
   width: 345px;
-  height: 330px;
+  height: 540px;
   padding: 20px;
   margin: 0 auto;
   border-radius: 5px;
 }
 
 h2 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 button {
@@ -21,17 +21,13 @@ button {
   width: 30%;
 }
 
-.hiding-btn {
-  background-color: transparent;
-}
-
 mat-form-field {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 460px) {
-  .auth-form {
+  .admin-form {
     width: 250px;
   }
 }

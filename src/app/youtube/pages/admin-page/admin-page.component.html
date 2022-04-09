@@ -1,0 +1,54 @@
+<section class="container admin-container">
+  <div class="admin-form">
+    <h2>Create new card</h2>
+    <form novalidate autocomplete="off" [formGroup]="adminForm" (ngSubmit)="adminForm.valid && createCard()">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input type="text" matInput formControlName="title" name="title" class="admin-title">
+        <mat-error *ngIf="title !== null && (title.dirty || title.touched)">
+          <span *ngIf="title.errors && title.hasError('required')">Please enter a title</span>
+          <span *ngIf="title.invalid && title.hasError('minlength')">The title is too short</span>
+          <span *ngIf="title.invalid && title.hasError('maxlength')">The title is too long</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input type="text" matInput formControlName="description" name="description" class="admin-description">
+        <mat-error
+          *ngIf="description !== null && (description.dirty || description.touched) && description.hasError('maxlength')">
+          The description is too long
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Link Image</mat-label>
+        <input type="text" matInput formControlName="image" name="image" class="admin-image">
+        <mat-error *ngIf="image !== null && (image.dirty || image.touched)">
+          <span *ngIf="image.errors && image.hasError('required')">Please enter a link to the image</span>
+          <span *ngIf="image.invalid && image.hasError('pattern')">The image link is invalid</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Link video</mat-label>
+        <input type="text" matInput formControlName="video" name="video" class="admin-video">
+        <mat-error *ngIf="video !== null && (video.dirty || video.touched)">
+          <span *ngIf="video.errors && video.hasError('required')">Please enter a link to the video</span>
+          <span *ngIf="video.invalid && video.hasError('pattern')">The video link is invalid</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input type="date" matInput formControlName="date" name="date" class="admin-date">
+        <mat-error *ngIf="date !== null && (date.dirty || date.touched)">
+          <span *ngIf="date.errors && date.hasError('required')">Please enter a creation date</span>
+        </mat-error>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button [disabled]="adminForm.invalid">Create card</button>
+    </form>
+  </div>
+</section>
