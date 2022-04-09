@@ -1,5 +1,5 @@
 <section class="container admin-container">
-  <div class="admin-form">
+  <div class="admin-form" *ngIf="!isCreated; else created">
     <h2>Create new card</h2>
     <form novalidate autocomplete="off" [formGroup]="adminForm" (ngSubmit)="adminForm.valid && createCard()">
 
@@ -52,4 +52,12 @@
       <button type="submit" mat-raised-button [disabled]="adminForm.invalid">Create card</button>
     </form>
   </div>
+  <ng-template class="form-data" #created>
+    <h2>The card was created with data:</h2>
+    <p>{{ title?.value }}</p>
+    <p>{{ description?.value }}</p>
+    <p>{{ image?.value }}</p>
+    <p>{{ video?.value }}</p>
+    <p>{{ date?.value }}</p>
+  </ng-template>
 </section>
