@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/gards/auth.guard';
 import { MainPageComponent } from './core/pages/main-page/main-page.component';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
+import { AdminPageComponent } from './youtube/pages/admin-page/admin-page.component';
 import { DetailPageComponent } from './youtube/pages/detail-page/detail-page.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   { path: 'login', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
   { path: 'card/:id', component: DetailPageComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' },
 ];
