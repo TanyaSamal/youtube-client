@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class SearchFieldComponent {
   @Output() search: EventEmitter<void> = new EventEmitter();
 
-  startsearch() {
+  public startSearch() {
     this.search.emit();
   }
 }

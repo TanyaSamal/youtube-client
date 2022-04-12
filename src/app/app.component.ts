@@ -9,24 +9,24 @@ import { FilterEvent } from './models/types';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'youtube-client';
+  public title = 'youtube-client';
 
   @ViewChild(SearchComponent) viewSearch: SearchComponent = Object.assign({});
   @ViewChild(FilterComponent) viewFilterh: FilterComponent = Object.assign({});
 
-  filterByField(filterEvent: FilterEvent): void {
+  public filterByField(filterEvent: FilterEvent): void {
     this.viewSearch.filterByField(filterEvent.direction, filterEvent.field);
   }
 
-  filterByWord(word: string): void {
+  public filterByWord(word: string): void {
     this.viewSearch.filterByWord(word);
   }
 
-  showResults(): void {
+  public showResults(): void {
     this.viewSearch.showResults();
   }
 
-  openFilter(): void {
+  public openFilter(): void {
     this.viewFilterh.toggleFilter();
   }
 }

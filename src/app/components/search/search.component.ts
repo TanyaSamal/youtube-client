@@ -10,19 +10,15 @@ import { SortByFieldPipe } from 'src/app/pipes/sortByField.pipe';
   providers: [SortByFieldPipe, FilterByWordPipe],
 })
 export class SearchComponent implements OnInit {
-  searchResults: ISearchResponse = Object.assign({});
-  filteredResponse: ISearchResponse = Object.assign({});
-  nothingFound = false;
-  isShow = false;
+  public searchResults: ISearchResponse = Object.assign({});
+  public filteredResponse: ISearchResponse = Object.assign({});
+  public nothingFound = false;
+  public isShow = false;
 
   constructor(
     private sortByFieldPipe: SortByFieldPipe,
     private filterByWordPipe: FilterByWordPipe,
   ) {}
-
-  private setOriginalResponse(): void {
-    this.filteredResponse = Object.assign({}, this.searchResults);
-  }
 
   async ngOnInit(): Promise<void> {
     const responce = '../../../assets/responce.json';
@@ -31,20 +27,24 @@ export class SearchComponent implements OnInit {
     this.setOriginalResponse();
   }
 
-  showResults() {
+  public showResults() {
     this.isShow = true;
   }
 
-  filterByField(up: boolean, field: string): void {
+  public filterByField(up: boolean, field: string): void {
     this.sortByFieldPipe.transform(this.filteredResponse.items, up, field);
   }
 
-  filterByWord(word: string): void {
+  public filterByWord(word: string): void {
     this.setOriginalResponse();
     this.filteredResponse.items = this.filterByWordPipe.transform(
       this.filteredResponse.items,
       word,
     );
     this.nothingFound = this.filteredResponse.items.length === 0;
+  }
+
+  private setOriginalResponse(): void {
+    this.filteredResponse = Object.assign({}, this.searchResults);
   }
 }

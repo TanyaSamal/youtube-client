@@ -4,9 +4,9 @@
   justify-content: center;
   height: 327px;
   width: 100%;
-  background: #e5e5e5;
+  background: var(--main-bg-color);
   border-radius: 5px;
-  border-bottom: 5px solid #2f80ed;
+  border-bottom: 5px solid var(--main-button-color);
 }
 
 img {
@@ -22,28 +22,18 @@ p {
   text-align: center;
   margin: 22px;
   overflow: hidden;
-  color: #4f4f4f;
+  color: var(--main-card-text-color);
 }
 
 a {
   margin: 10px auto;
   width: 120px;
   height: 32px;
-  background-color: #2f80ed;
-  color: #fff;
+  background-color: var(--main-button-color);
+  color: var(--white-color);
 }
 
 @media (max-width: 800px) {
-  /* img {
-    width: 150px;
-    height: 80px;
-  }
-
-  .card {
-    height: 273px;
-    width: 190px;
-  } */
-
   p {
     font-size: 16px;
     line-height: 18px;

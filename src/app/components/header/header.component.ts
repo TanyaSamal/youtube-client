@@ -9,11 +9,11 @@ export class HeaderComponent {
   @Output() search: EventEmitter<void> = new EventEmitter();
   @Output() openFilter: EventEmitter<void> = new EventEmitter();
 
-  emitSearch() {
+  public emitSearch() {
     this.search.emit();
   }
 
-  showFilter() {
+  public showFilter() {
     this.openFilter.emit();
   }
 }

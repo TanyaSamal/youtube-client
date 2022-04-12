@@ -7,25 +7,27 @@ import { ArrowState, FilterEvent, SortFields } from 'src/app/models/types';
   styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent {
-  @Output() filterByField: EventEmitter<FilterEvent> = new EventEmitter();
-  @Output() filterByWord: EventEmitter<string> = new EventEmitter();
-  viewState: ArrowState = {
+  @Output() filterByFieldClicked: EventEmitter<FilterEvent> = new EventEmitter();
+  @Output() filterByWordChanged: EventEmitter<string> = new EventEmitter();
+  public viewState: ArrowState = {
     show: false,
     up: false,
   };
-  dateState: ArrowState = {
+  public dateState: ArrowState = {
     show: false,
     up: false,
   };
-  inputWord = '';
-  isOpen = false;
+  public inputWord = '';
+  public isOpen = false;
+  public sortingByDateContext = { field: 'date', state: this.dateState };
+  public sortingByViewsContext = { field: 'views', state: this.viewState };
 
-  sortByField(fieldName: string): void {
+  public sortByField(fieldName: string): void {
     if (fieldName === SortFields.DATE) {
       this.dateState.show = true;
       this.dateState.up = !this.dateState.up;
       this.viewState.show = false;
-      this.filterByField.emit({
+      this.filterByFieldClicked.emit({
         direction: this.dateState.up,
         field: fieldName,
       });
@@ -33,21 +35,21 @@ export class FilterComponent {
       this.viewState.show = true;
       this.viewState.up = !this.viewState.up;
       this.dateState.show = false;
-      this.filterByField.emit({
+      this.filterByFieldClicked.emit({
         direction: this.viewState.up,
         field: fieldName,
       });
     }
   }
 
-  sortByWord(event: Event): void {
+  public sortByWord(event: Event): void {
     this.dateState.show = false;
     this.viewState.show = false;
     this.inputWord = (<HTMLInputElement>event.target).value;
-    this.filterByWord.emit(this.inputWord);
+    this.filterByWordChanged.emit(this.inputWord);
   }
 
-  toggleFilter() {
+  public toggleFilter() {
     this.isOpen = !this.isOpen;
   }
 }

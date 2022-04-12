@@ -1,5 +1,13 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+:root {
+  --main-bg-color: #e5e5e5;
+  --main-text-color: #929292;
+  --main-card-text-color: #4f4f4f;
+  --main-button-color: #2f80ed;
+  --white-color: #fff;
+}
+
 html,
 body {
   height: 100%;
