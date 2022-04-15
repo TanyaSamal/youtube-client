@@ -7,7 +7,10 @@ export const addCustomCard = createAction(
   props<{ card: ICustomCard }>(),
 );
 
-export const getYoutubeCards = createAction('[Youtube Page] Get Youtube Cards');
+export const getYoutubeCards = createAction(
+  '[Youtube Page] Get Youtube Cards',
+  props<{ query: string }>(),
+);
 export const youtubeCardsLoadedSuccess = createAction(
   '[Youtube API] Youtube Cards Loaded Success',
   props<{ cards: ISearchCard[] }>(),

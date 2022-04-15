@@ -1,6 +1,6 @@
 <section class="search">
   <div class="container search-container show" *ngIf="!isLoading">
-    <app-search-card *ngFor="let i of filteredResponse.items" [item]="i" [search]="searchTerm"></app-search-card>
+    <app-search-card *ngFor="let i of filteredCards" [item]="i" [search]="searchTerm"></app-search-card>
   </div>
   <div class="container info-container" *ngIf="nothingFound || errorMessage || isLoading">
     <div class="empty-results" *ngIf="nothingFound">Nothing found :(</div>
