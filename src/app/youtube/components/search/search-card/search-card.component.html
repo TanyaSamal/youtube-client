@@ -1,6 +1,9 @@
 <div class="card" appColorBorder publishedDate="{{ itemData.date }}">
+  <ng-content select="[custom]"></ng-content>
   <img src="{{ itemData.image }}" width="210" height="120">
   <ng-content select="[statistic]"></ng-content>
   <p>{{ itemData.title }}</p>
-  <a mat-raised-button [routerLink]="['/card', itemData.id]" [queryParams]="{'search': search }">More...</a>
+  <a mat-raised-button [routerLink]="['/card', itemData.id]" [queryParams]="{'search': search }">
+    More...
+  </a>
 </div>

@@ -4,12 +4,14 @@ import { ICardState, ICustomList, IYoutubeList } from '../state.models';
 
 const initialCustomState: ICustomList = {
   cardsList: [],
-  error: new Error(),
+  error: null,
 };
 
 const initialYoutubeState: IYoutubeList = {
   cardsList: [],
-  error: new Error(),
+  error: null,
+  loaded: false,
+  searchValue: '',
 };
 
 const customReducer = createReducer(
@@ -33,6 +35,10 @@ const youtubeReducer = createReducer(
   on(CardActions.youtubeCardsLoadedError, (state, { error }) => ({
     ...state,
     error,
+  })),
+  on(CardActions.setYoutubeSearchValue, (state, { searchValue }) => ({
+    ...state,
+    searchValue,
   })),
 );
 

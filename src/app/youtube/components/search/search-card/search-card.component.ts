@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CONSTANTS } from 'src/app/shared/models/constants';
 import { ICustomCard } from 'src/app/youtube/models/custom-card.model';
 import { ISearchCard } from 'src/app/youtube/models/search-card.model';
 
@@ -10,9 +11,9 @@ import { ISearchCard } from 'src/app/youtube/models/search-card.model';
 export class SearchCardComponent implements OnInit {
   @Input() public item: ISearchCard | ICustomCard = Object.assign({});
   @Input() public search = '';
-  public itemData: ICustomCard = Object.assign({});
+  public itemData: ICustomCard = {} as ICustomCard;
 
-  ngOnInit() {
+  public ngOnInit() {
     if (this.isISearchCard(this.item)) {
       this.itemData.title = this.item.snippet.title;
       this.itemData.date = this.item.snippet.publishedAt;
@@ -20,6 +21,7 @@ export class SearchCardComponent implements OnInit {
       this.itemData.id = typeof this.item.id === 'string' ? this.item.id : this.item.id.videoId;
     } else {
       this.itemData = { ...this.item };
+      this.search = CONSTANTS.CUSTOM_CARD_DETAIL;
     }
   }
 

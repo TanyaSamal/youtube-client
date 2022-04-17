@@ -51,7 +51,7 @@ export class AdminPageComponent {
 
   createCard() {
     const card: ICustomCard = { ...this.adminForm.value };
-    card.id = Math.random().toString(36).slice(2, 4);
+    card.id = Math.random().toString(36).slice(2, 6);
     this.store.dispatch(CardActions.addCustomCard({ card }));
     this.router.navigateByUrl('search');
   }

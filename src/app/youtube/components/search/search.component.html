@@ -1,8 +1,10 @@
 <section class="search">
   <div class="container search-container show" *ngIf="!isLoading">
-    <app-search-card *ngFor="let i of customResults$ | async" [item]="i"></app-search-card>
+    <app-search-card *ngFor="let i of customResults$ | async" [item]="i">
+      <span custom class="custom-mark">Custom</span>
+    </app-search-card>
     <app-search-card *ngFor="let i of filteredCards" [item]="i" [search]="searchTerm">
-      <app-card-statistic statistic [item]="i"></app-card-statistic>
+      <app-card-statistic statistic [item]="i.statistics"></app-card-statistic>
     </app-search-card>
   </div>
   <div class="container info-container" *ngIf="nothingFound || errorMessage || isLoading">

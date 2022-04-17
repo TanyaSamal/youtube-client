@@ -2,6 +2,7 @@
   display: grid;
   align-items: center;
   justify-content: center;
+  position: relative;
   height: 327px;
   width: 100%;
   background: #e5e5e5;

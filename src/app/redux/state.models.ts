@@ -8,10 +8,12 @@ export interface ICardState {
 
 export interface IYoutubeList {
   cardsList: ISearchCard[];
-  error: Error;
+  error: Error | null;
+  loaded: boolean;
+  searchValue: string;
 }
 
 export interface ICustomList {
   cardsList: ICustomCard[];
-  error: Error;
+  error: Error | null;
 }

@@ -1,14 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable, Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { pluck, switchMap } from 'rxjs/operators';
 import { ProgressService } from 'src/app/core/services/progress.service';
 import { FilterByWordPipe } from 'src/app/youtube/pipes/filterByWord.pipe';
 import { SortByFieldPipe } from 'src/app/youtube/pipes/sortByField.pipe';
 import * as CardActions from '../../../redux/actions/cards.actions';
 import * as CardSelectors from '../../../redux/selectors/cards.selectors';
-import { ICustomCard } from '../../models/custom-card.model';
 import { ISearchCard } from '../../models/search-card.model';
 
 @Component({
@@ -20,17 +19,13 @@ import { ISearchCard } from '../../models/search-card.model';
 export class SearchComponent implements OnInit, OnDestroy {
   public filteredCards: ISearchCard[] = [];
   public nothingFound = false;
-  public searchTerm = '';
   public errorMessage = false;
   public isLoading = false;
-  public youtubeError$: Observable<Error> = this.store.select(CardSelectors.selectYoutubeError);
-  public customResults$: Observable<ICustomCard[]> = this.store.select(
-    CardSelectors.selectCustomCards,
-  );
+  public searchTerm = '';
+  public youtubeError$ = this.store.select(CardSelectors.selectYoutubeError);
+  public customResults$ = this.store.select(CardSelectors.selectCustomCards);
+  private youtubeResults$ = this.store.select(CardSelectors.selectYoutubeCards);
   private searchCards: ISearchCard[] = [];
-  private youtubeResults$: Observable<ISearchCard[]> = this.store.select(
-    CardSelectors.selectYoutubeCards,
-  );
   private routerSub = new Subscription();
   private progressSub = new Subscription();
 
@@ -49,6 +44,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         map((searchValue: string) => {
           if (searchValue) {
             this.searchTerm = searchValue;
+            this.store.dispatch(CardActions.setYoutubeSearchValue({ searchValue }));
             this.store.dispatch(CardActions.getYoutubeCards({ query: searchValue }));
           }
         }),
@@ -68,9 +64,9 @@ export class SearchComponent implements OnInit, OnDestroy {
           throw new Error('Invalid request');
         },
       });
-    this.progressSub = this.progressService.dataLoading$.subscribe(
-      (data) => (this.isLoading = data),
-    );
+    this.progressSub = this.progressService.dataLoading$.subscribe((data) => {
+      this.isLoading = data;
+    });
   }
 
   public ngOnDestroy(): void {

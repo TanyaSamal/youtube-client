@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, of, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
-import { Constants } from 'src/app/shared/models/constants';
+import { CONSTANTS } from 'src/app/shared/models/constants';
 
 @Component({
   selector: 'app-search-field',
@@ -19,8 +19,8 @@ export class SearchFieldComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     this.sub = this.newSearchValue$
       .pipe(
-        filter((text: string) => text.length >= Constants.MIN_CHARACTERS),
-        debounceTime(Constants.DEBOUNCE_TIME),
+        filter((text: string) => text.length >= CONSTANTS.MIN_CHARACTERS),
+        debounceTime(CONSTANTS.DEBOUNCE_TIME),
         distinctUntilChanged(),
         catchError((error) => of(error)),
       )
