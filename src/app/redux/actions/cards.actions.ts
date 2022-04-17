@@ -6,6 +6,10 @@ export const addCustomCard = createAction(
   '[Youtube Page] Add Custom Card',
   props<{ card: ICustomCard }>(),
 );
+export const addCustomCardError = createAction(
+  '[Youtube Page] Add Custom Card Error',
+  props<{ error: Error }>(),
+);
 
 export const getYoutubeCards = createAction(
   '[Youtube Page] Get Youtube Cards',
@@ -15,4 +19,7 @@ export const youtubeCardsLoadedSuccess = createAction(
   '[Youtube API] Youtube Cards Loaded Success',
   props<{ cards: ISearchCard[] }>(),
 );
-export const youtubeCardsLoadedError = createAction('[Youtube API] Youtube Cards Loaded Error');
+export const youtubeCardsLoadedError = createAction(
+  '[Youtube API] Youtube Cards Loaded Error',
+  props<{ error: Error }>(),
+);

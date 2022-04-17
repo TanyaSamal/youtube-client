@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
     canLoad: [AuthGuard],
   },
+  {
+    path: 'search',
+    loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
+    canLoad: [AuthGuard],
+  },
   { path: 'login', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
   { path: 'card/:id', component: DetailPageComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },

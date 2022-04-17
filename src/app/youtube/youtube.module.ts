@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { StoreModule } from '@ngrx/store';
-// import { youtubeReducer } from '../redux/reducers/cards.reducers';
 import { SharedModule } from '../shared/shared.module';
 import { FilterComponent } from './components/filter/filter.component';
 import { CardStatisticComponent } from './components/search/search-card/card-statistic/card-statistic.component';
@@ -29,14 +27,7 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
     DetailPageComponent,
     AdminPageComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    YoutubeRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    // StoreModule.forFeature('youtubeCards', youtubeReducer),
-  ],
+  imports: [CommonModule, SharedModule, YoutubeRoutingModule, FormsModule, ReactiveFormsModule],
   exports: [DetailPageComponent],
 })
 export class YoutubeModule {}

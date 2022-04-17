@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as CardActions from '../../../redux/actions/cards.actions';
+import { ICustomCard } from '../../models/custom-card.model';
 import { DateValidator } from '../../validators/date.validator';
 
 @Component({
@@ -9,7 +13,6 @@ import { DateValidator } from '../../validators/date.validator';
   providers: [FormBuilder],
 })
 export class AdminPageComponent {
-  public isCreated = false;
   public adminForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
     description: ['', Validators.maxLength(255)],
@@ -24,7 +27,7 @@ export class AdminPageComponent {
     date: ['', [Validators.required, DateValidator.check]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store, private router: Router) {}
 
   get title() {
     return this.adminForm.get('title');
@@ -47,6 +50,9 @@ export class AdminPageComponent {
   }
 
   createCard() {
-    this.isCreated = true;
+    const card: ICustomCard = { ...this.adminForm.value };
+    card.id = Math.random().toString(36).slice(2, 4);
+    this.store.dispatch(CardActions.addCustomCard({ card }));
+    this.router.navigateByUrl('search');
   }
 }

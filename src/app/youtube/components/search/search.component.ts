@@ -8,6 +8,7 @@ import { FilterByWordPipe } from 'src/app/youtube/pipes/filterByWord.pipe';
 import { SortByFieldPipe } from 'src/app/youtube/pipes/sortByField.pipe';
 import * as CardActions from '../../../redux/actions/cards.actions';
 import * as CardSelectors from '../../../redux/selectors/cards.selectors';
+import { ICustomCard } from '../../models/custom-card.model';
 import { ISearchCard } from '../../models/search-card.model';
 
 @Component({
@@ -22,6 +23,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   public searchTerm = '';
   public errorMessage = false;
   public isLoading = false;
+  public youtubeError$: Observable<Error> = this.store.select(CardSelectors.selectYoutubeError);
+  public customResults$: Observable<ICustomCard[]> = this.store.select(
+    CardSelectors.selectCustomCards,
+  );
   private searchCards: ISearchCard[] = [];
   private youtubeResults$: Observable<ISearchCard[]> = this.store.select(
     CardSelectors.selectYoutubeCards,
@@ -42,8 +47,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       .pipe(
         pluck('searchValue'),
         map((searchValue: string) => {
-          this.searchTerm = searchValue;
-          this.store.dispatch(CardActions.getYoutubeCards({ query: searchValue }));
+          if (searchValue) {
+            this.searchTerm = searchValue;
+            this.store.dispatch(CardActions.getYoutubeCards({ query: searchValue }));
+          }
         }),
         switchMap(() =>
           this.youtubeResults$.pipe(

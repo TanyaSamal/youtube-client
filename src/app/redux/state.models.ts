@@ -8,8 +8,10 @@ export interface ICardState {
 
 export interface IYoutubeList {
   cardsList: ISearchCard[];
+  error: Error;
 }
 
 export interface ICustomList {
   cardsList: ICustomCard[];
+  error: Error;
 }

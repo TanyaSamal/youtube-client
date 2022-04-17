@@ -1,5 +1,5 @@
 <mat-form-field>
   <mat-placeholder>What do you want to find out?</mat-placeholder>
   <input matInput type="search" class="search-input" [(ngModel)]="searchValue"
-    (ngModelChange)="newSearchValue.next($event)">
+    (ngModelChange)="newSearchValue$.next($event)">
 </mat-form-field>
