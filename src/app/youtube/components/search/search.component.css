@@ -21,6 +21,17 @@
   min-height: 50vh;
 }
 
+.custom-mark {
+  position: absolute;
+  background-color: var(--main-button-color);
+  padding: 5px;
+  border-radius: 5px;
+  top: 0;
+  right: 0;
+  color: var(--white-color);
+  font-size: 0.8em;
+}
+
 @media (max-width: 800px) {
   .show {
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));

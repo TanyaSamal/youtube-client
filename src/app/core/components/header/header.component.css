@@ -1,7 +1,7 @@
 header {
   width: 100%;
   height: 71px;
-  background-color: #e5e5e5;
+  background-color: var(--main-bg-color);
 }
 
 .header-container {
@@ -23,8 +23,8 @@ header {
 }
 
 .filter-btn {
-  background-color: #2f80ed;
-  color: #fff;
+  background-color: var(--main-button-color);
+  color: var(--white-color);
   line-height: 32px;
 }
 

@@ -4,9 +4,9 @@ mat-form-field {
 }
 
 .search-btn {
-  background-color: #2f80ed;
+  background-color: var(--main-button-color);
   margin-right: 10px;
-  color: #fff;
+  color: var(--white-color);
   text-transform: lowercase;
   line-height: 32px;
 }

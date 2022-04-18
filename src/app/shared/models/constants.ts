@@ -1,11 +1,12 @@
-export enum Constants {
-  ONE_WEEK = 604800000,
-  ONE_MOUNTH = 2678400000,
-  BLUE_BORDER = '#2f80ed',
-  RED_BORDER = '#ed2f2f',
-  GREEN_BORDER = '#19d66e',
+export enum CONSTANTS {
+  ONE_WEEK_IN_SECONDS = 604800000,
+  ONE_MOUNTH_IN_SECONDS = 2678400000,
+  BLUE_BORDER_COLOR = '#2f80ed',
+  RED_BORDER_COLOR = '#ed2f2f',
+  GREEN_BORDER_COLOR = '#19d66e',
   MIN_CHARACTERS = 3,
   DEBOUNCE_TIME = 600,
   BASE_URL = 'https://www.googleapis.com/youtube/v3/',
   API_KEY = 'AIzaSyCCS6lbNp7tUOZBU5dGdd87H8O_NgJsFBw',
+  CUSTOM_CARD_DETAIL = 'customCard',
 }

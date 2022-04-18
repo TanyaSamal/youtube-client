@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, switchMap } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { map, Subscription } from 'rxjs';
+import { pluck, switchMap } from 'rxjs/operators';
 import { ProgressService } from 'src/app/core/services/progress.service';
-import { ISearchResponse } from 'src/app/youtube/models/search.model';
 import { FilterByWordPipe } from 'src/app/youtube/pipes/filterByWord.pipe';
 import { SortByFieldPipe } from 'src/app/youtube/pipes/sortByField.pipe';
-import { YoutubeService } from '../../services/youtube.service';
+import * as CardActions from '../../../redux/actions/cards.actions';
+import * as CardSelectors from '../../../redux/selectors/cards.selectors';
+import { ISearchCard } from '../../models/search-card.model';
 
 @Component({
   selector: 'app-search',
@@ -15,63 +17,79 @@ import { YoutubeService } from '../../services/youtube.service';
   providers: [SortByFieldPipe, FilterByWordPipe],
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  public filteredResponse: ISearchResponse = Object.assign({});
+  public filteredCards: ISearchCard[] = [];
   public nothingFound = false;
-  public searchTerm = '';
   public errorMessage = false;
   public isLoading = false;
-  private searchResults: ISearchResponse = Object.assign({});
-  private sub: Subscription = new Subscription();
+  public searchTerm = '';
+  public youtubeError$ = this.store.select(CardSelectors.selectYoutubeError);
+  public customResults$ = this.store.select(CardSelectors.selectCustomCards);
+  private youtubeResults$ = this.store.select(CardSelectors.selectYoutubeCards);
+  private searchCards: ISearchCard[] = [];
+  private routerSub = new Subscription();
+  private progressSub = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
     private sortByFieldPipe: SortByFieldPipe,
     private filterByWordPipe: FilterByWordPipe,
-    private youtubeService: YoutubeService,
+    private store: Store,
     private progressService: ProgressService,
   ) {}
 
   public ngOnInit(): void {
-    this.sub = this.route.params
+    this.routerSub = this.route.params
       .pipe(
         pluck('searchValue'),
-        switchMap((searchValue: string) => {
-          this.searchTerm = searchValue;
-          return this.youtubeService.getResponse(searchValue);
+        map((searchValue: string) => {
+          if (searchValue) {
+            this.searchTerm = searchValue;
+            this.store.dispatch(CardActions.setYoutubeSearchValue({ searchValue }));
+            this.store.dispatch(CardActions.getYoutubeCards({ query: searchValue }));
+          }
         }),
+        switchMap(() =>
+          this.youtubeResults$.pipe(
+            map((results) => {
+              if (results.length !== 0) {
+                this.searchCards = results;
+                this.setOriginalResponse();
+              }
+            }),
+          ),
+        ),
       )
       .subscribe({
-        next: (data) => {
-          this.searchResults = data;
-          this.nothingFound = data.items.length === 0;
-          this.setOriginalResponse();
-        },
         error: () => {
           this.errorMessage = true;
           throw new Error('Invalid request');
         },
       });
-    this.progressService.dataLoading$.subscribe((data) => (this.isLoading = data));
+    this.progressSub = this.progressService.dataLoading$.subscribe((data) => {
+      this.isLoading = data;
+    });
   }
 
   public ngOnDestroy(): void {
-    if (this.sub) this.sub.unsubscribe();
+    if (this.routerSub) {
+      this.routerSub.unsubscribe();
+    }
+    if (this.progressSub) {
+      this.progressSub.unsubscribe();
+    }
   }
 
   public filterByField(up: boolean, field: string): void {
-    this.sortByFieldPipe.transform(this.filteredResponse.items, up, field);
+    this.sortByFieldPipe.transform(this.filteredCards, up, field);
   }
 
   public filterByWord(word: string): void {
     this.setOriginalResponse();
-    this.filteredResponse.items = this.filterByWordPipe.transform(
-      this.filteredResponse.items,
-      word,
-    );
-    this.nothingFound = this.filteredResponse.items.length === 0;
+    this.filteredCards = this.filterByWordPipe.transform(this.filteredCards, word);
+    this.nothingFound = this.filteredCards.length === 0;
   }
 
   private setOriginalResponse(): void {
-    this.filteredResponse = { ...this.searchResults };
+    this.filteredCards = [...this.searchCards];
   }
 }

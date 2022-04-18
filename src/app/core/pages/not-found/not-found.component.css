@@ -8,5 +8,5 @@
 
 p {
   font-size: 1.4em;
-  color: #828282;
+  color: var(--footer-text-color);
 }

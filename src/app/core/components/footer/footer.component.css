@@ -1,14 +1,14 @@
 footer {
   width: 100%;
   height: 64px;
-  background-color: #e5e5e5;
+  background-color: var(--main-bg-color);
 }
 
 .footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #7e7e7e;
+  color: var(--footer-text-color);
   padding: 10px 0;
 }
 
@@ -16,41 +16,49 @@ footer {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #7e7e7e;
+  color: var(--footer-text-color);
+  transition: 0.3s;
 }
 
 .gh-link:hover span {
-  color: #6e6e6e;
+  color: var(--footer-link-color);
 }
 
-.gh-link:hover svg path {
-  transition: 0.3s;
-  fill: #6e6e6e;
-}
-
-.gh-logo svg {
+.gh-logo {
   margin-right: 10px;
+  background-image: url('../../../../assets/github.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: invert(40%) sepia(0%) saturate(1638%) hue-rotate(212deg) brightness(106%) contrast(93%);
   width: 30px;
   height: 30px;
 }
 
-.rs-link svg {
-  width: 100px;
-  height: 40px;
+.gh-link:hover .gh-logo {
+  filter: invert(52%) sepia(43%) saturate(0%) hue-rotate(209deg) brightness(88%) contrast(96%);
 }
 
-.rs-link svg:hover path {
+.rs-link {
+  background-image: url('../../../../assets/rss.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: invert(40%) sepia(0%) saturate(1638%) hue-rotate(212deg) brightness(106%) contrast(93%);
+  width: 100px;
+  height: 40px;
   transition: 0.3s;
-  fill: #6e6e6e;
+}
+
+.rs-link:hover {
+  filter: invert(52%) sepia(43%) saturate(0%) hue-rotate(209deg) brightness(88%) contrast(96%);
 }
 
 @media (max-width: 460px) {
-  .rs-link svg {
+  .rs-link {
     width: 60px;
     height: 20px;
   }
 
-  .gh-logo svg {
+  .gh-logo {
     width: 20px;
     height: 20px;
   }

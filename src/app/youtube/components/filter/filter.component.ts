@@ -21,6 +21,8 @@ export class FilterComponent implements OnInit, OnDestroy {
   };
   public inputWord = '';
   public isOpen = false;
+  public sortingByDateContext = { field: 'date', state: this.dateState };
+  public sortingByViewsContext = { field: 'views', state: this.viewState };
   private sub: Subscription = new Subscription();
 
   constructor(private stateService: StateService) {}
@@ -32,7 +34,9 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.sub) this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   public sortByField(fieldName: string): void {

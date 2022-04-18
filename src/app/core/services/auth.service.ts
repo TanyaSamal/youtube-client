@@ -11,10 +11,6 @@ export class AuthService {
     this.data$ = this.userInfo$.asObservable();
   }
 
-  public updatedDataSelection(data: UserInfo): void {
-    this.userInfo$.next(data);
-  }
-
   public login(name: string): void {
     const token = Math.random().toString(36);
     this.updatedDataSelection({
@@ -32,5 +28,9 @@ export class AuthService {
       isAuth: false,
       userName: '',
     });
+  }
+
+  private updatedDataSelection(data: UserInfo): void {
+    this.userInfo$.next(data);
   }
 }

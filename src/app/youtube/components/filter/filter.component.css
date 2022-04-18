@@ -1,7 +1,7 @@
 .filter {
-  background: #e5e5e5;
+  background: var(--main-bg-color);
   font-size: 1em;
-  color: #929292;
+  color: var(--main-text-color);
 }
 
 .filter-container {
@@ -16,13 +16,13 @@
   position: relative;
   padding-right: 5px;
   text-decoration-line: underline;
-  color: #2f80ed;
+  color: var(--main-button-color);
   cursor: pointer;
 }
 
 label {
   margin-right: 10px;
-  color: #2f80ed;
+  color: var(--main-button-color);
 }
 
 input {
