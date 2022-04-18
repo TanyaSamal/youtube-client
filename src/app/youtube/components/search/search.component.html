@@ -7,10 +7,12 @@
       <app-card-statistic statistic [item]="i.statistics"></app-card-statistic>
     </app-search-card>
   </div>
-  <div class="container info-container" *ngIf="nothingFound || errorMessage || isLoading">
+  <div class="container info-container" *ngIf="nothingFound || errorMessage || (youtubeError$ | async)">
     <div class="empty-results" *ngIf="nothingFound">Nothing found :(</div>
     <div class="empty-results" *ngIf="!nothingFound && (errorMessage || (youtubeError$ | async))">Invalid request :(
     </div>
-    <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
+  </div>
+  <div class="container info-container" *ngIf="isLoading">
+    <mat-spinner class="spinner"></mat-spinner>
   </div>
 </section>
