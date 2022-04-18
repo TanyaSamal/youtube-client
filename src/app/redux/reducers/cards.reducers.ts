@@ -10,7 +10,6 @@ const initialCustomState: ICustomList = {
 const initialYoutubeState: IYoutubeList = {
   cardsList: [],
   error: null,
-  loaded: false,
   searchValue: '',
 };
 

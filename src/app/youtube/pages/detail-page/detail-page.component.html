@@ -2,18 +2,18 @@
   <div class="card" *ngIf="isLoaded">
     <div class="back-btn" (click)="goBack()">&lt;</div>
     <div class="card-img">
-      <img src="{{ itemData.image }}" width="640" height="480">
+      <img src="{{ detailItemData.image }}" width="640" height="480">
     </div>
-    <div class="card-info" appColorBorder publishedDate="{{ itemData.date }}">
+    <div class="card-info" appColorBorder publishedDate="{{ detailItemData.date }}">
       <div class="info-block">
         <div class="card-title">
-          <h2>{{ itemData.title }}</h2>
-          <p class="published-date">{{ itemData.date | date:'fullDate' }}</p>
+          <h2>{{ detailItemData.title }}</h2>
+          <p class="published-date">{{ detailItemData.date | date:'fullDate' }}</p>
         </div>
         <p class="description-title">Description:</p>
-        <p class="description">{{ itemData.description }}</p>
+        <p class="description">{{ detailItemData.description }}</p>
       </div>
-      <div class="socials-block" *ngIf="isSearchCard(item)">
+      <div class="socials-block" *ngIf="isSearchCard(detailItem)">
         <app-card-statistic [item]="statistic"></app-card-statistic>
       </div>
     </div>

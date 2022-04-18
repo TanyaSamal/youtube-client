@@ -24,7 +24,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    if (this.sub) this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   public showFilter() {

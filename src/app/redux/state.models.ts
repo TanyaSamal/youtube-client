@@ -9,7 +9,6 @@ export interface ICardState {
 export interface IYoutubeList {
   cardsList: ISearchCard[];
   error: Error | null;
-  loaded: boolean;
   searchValue: string;
 }
 

@@ -17,8 +17,8 @@ import { ISearchCard, IStatistisc } from '../../models/search-card.model';
 export class DetailPageComponent implements OnInit, OnDestroy {
   public isLoaded = false;
   public statistic: IStatistisc = {} as IStatistisc;
-  public itemData: ICustomCard = {} as ICustomCard;
-  public item: ISearchCard | ICustomCard = Object.assign({});
+  public detailItemData: ICustomCard = {} as ICustomCard;
+  public detailItem: ISearchCard | ICustomCard = Object.assign({});
   private customResults$: Observable<ICustomCard[]> = this.store.select(
     CardSelectors.selectCustomCards,
   );
@@ -57,8 +57,12 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.routeSubscription) this.routeSubscription.unsubscribe();
-    if (this.querySubscription) this.querySubscription.unsubscribe();
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+    if (this.querySubscription) {
+      this.querySubscription.unsubscribe();
+    }
   }
 
   public goBack(): void {
@@ -71,7 +75,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
   private getItemData(card: ISearchCard | ICustomCard): void {
     if (this.isSearchCard(card)) {
-      this.itemData = {
+      this.detailItemData = {
         title: card.snippet.title,
         date: card.snippet.publishedAt,
         image: card.snippet.thumbnails.standard
@@ -83,13 +87,13 @@ export class DetailPageComponent implements OnInit, OnDestroy {
       };
       this.statistic = { ...card.statistics };
     } else {
-      this.itemData = { ...card };
+      this.detailItemData = { ...card };
     }
   }
 
   private handleResults(card: ISearchCard | ICustomCard | undefined): void {
     if (card) {
-      this.item = { ...card };
+      this.detailItem = { ...card };
       this.isLoaded = true;
       this.getItemData(card);
     } else {

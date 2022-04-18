@@ -51,9 +51,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         switchMap(() =>
           this.youtubeResults$.pipe(
             map((results) => {
-              this.searchCards = results;
-              this.nothingFound = results.length === 0;
-              this.setOriginalResponse();
+              if (results.length !== 0) {
+                this.searchCards = results;
+                this.setOriginalResponse();
+              }
             }),
           ),
         ),
@@ -70,8 +71,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.routerSub) this.routerSub.unsubscribe();
-    if (this.progressSub) this.progressSub.unsubscribe();
+    if (this.routerSub) {
+      this.routerSub.unsubscribe();
+    }
+    if (this.progressSub) {
+      this.progressSub.unsubscribe();
+    }
   }
 
   public filterByField(up: boolean, field: string): void {

@@ -10,12 +10,12 @@ export class ColorBorderDirective {
 
   @HostBinding('style.borderBottomColor') public get getBorderBottomColor(): string {
     const period: number = this.getTimePeriod();
-    if (period < CONSTANTS.ONE_WEEK) {
-      this.borderBottom = CONSTANTS.BLUE_BORDER;
-    } else if (period > CONSTANTS.ONE_WEEK && period < CONSTANTS.ONE_MOUNTH) {
-      this.borderBottom = CONSTANTS.GREEN_BORDER;
+    if (period < CONSTANTS.ONE_WEEK_IN_SECONDS) {
+      this.borderBottom = CONSTANTS.BLUE_BORDER_COLOR;
+    } else if (period > CONSTANTS.ONE_WEEK_IN_SECONDS && period < CONSTANTS.ONE_MOUNTH_IN_SECONDS) {
+      this.borderBottom = CONSTANTS.GREEN_BORDER_COLOR;
     } else {
-      this.borderBottom = CONSTANTS.RED_BORDER;
+      this.borderBottom = CONSTANTS.RED_BORDER_COLOR;
     }
     return this.borderBottom;
   }
