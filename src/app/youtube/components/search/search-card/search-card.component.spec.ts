@@ -39,9 +39,7 @@ describe('SearchCardComponent', () => {
   });
 
   it('should contain title', () => {
-    const title = <HTMLParagraphElement>(
-      fixture.debugElement.query(By.css('.card-title')).nativeElement
-    );
+    const title = <HTMLParagraphElement>fixture.debugElement.query(By.css('p')).nativeElement;
     expect(title.textContent).toBe(component.customCard.title);
   });
 

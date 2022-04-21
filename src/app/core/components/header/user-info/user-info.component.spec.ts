@@ -19,9 +19,6 @@ describe('UserInfoComponent', () => {
     }).compileComponents();
     authServiceMock = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(UserInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

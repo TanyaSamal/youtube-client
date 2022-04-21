@@ -21,7 +21,7 @@ export class ConfigService {
     );
   }
 
-  public getConfig() {
+  public getConfig(): Observable<IConfig> {
     return this.config ? of(this.config) : this.config$;
   }
 }
