@@ -86,7 +86,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public filterByWord(word: string): void {
     this.setOriginalResponse();
     this.filteredCards = this.filterByWordPipe.transform(this.filteredCards, word);
-    this.nothingFound = this.filteredCards.length === 0;
+    this.nothingFound = this.filteredCards?.length === 0;
   }
 
   private setOriginalResponse(): void {
